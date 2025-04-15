@@ -1,13 +1,21 @@
-import Footer from './components/Footer';
+
+import Header from "./components/Header/Header"
+import Footer from "./components/Footer/Footer"
+import {Outlet} from "react-router-dom"
+
+import './App.css'
+import "./styles/global.css"
+
+
 
 function App() {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-      <main style={{ flexGrow: 1, padding: '32px', textAlign: 'center' }}>
-        <h1>GoodPoint</h1>
-      </main>
+    <>
+      <Header />
+      <Outlet />
       <Footer />
-    </div>
+    </>
+
   );
 }
 
