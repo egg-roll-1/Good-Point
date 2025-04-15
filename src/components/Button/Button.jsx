@@ -10,6 +10,8 @@ const Button = ({text, type, onClick}) => {
             return buttonStyles.duplicate;
           case 'action':
             return buttonStyles.action;
+          case 'brightLogin':
+            return buttonStyles.brightLogin;
           default:
             return buttonStyles.login; // 기본값
         }

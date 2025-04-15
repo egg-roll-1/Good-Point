@@ -1,6 +1,8 @@
 const routes = {
     main: "/",
-    login: "/login"
+    start: "/start",
+    login: "/login",
+    signup: "/signup",
     
 }
 
