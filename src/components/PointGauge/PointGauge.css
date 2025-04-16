@@ -1,0 +1,16 @@
+.gauge-wrapper {
+    width: 259px;
+    height: 29px;
+    background-color: #ffccd3;
+    border-radius: 60px;
+    overflow: hidden;
+    margin: 0 auto;
+  }
+  
+  .gauge-fill {
+    height: 100%;
+    background-color: #e03131;
+    border-radius: 60px 0 0 60px;
+    transition: width 0.4s ease;
+  }
+  

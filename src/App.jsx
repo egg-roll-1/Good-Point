@@ -1,13 +1,24 @@
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Footer from './components/Footer';
+import Main from './pages/Main';
+import Point from './pages/Point';
+import MyInfo from './pages/MyInfo'; 
 
 function App() {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-      <main style={{ flexGrow: 1, padding: '32px', textAlign: 'center' }}>
-        <h1>GoodPoint</h1>
-      </main>
-      <Footer />
-    </div>
+    <Router>
+      <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+        <main style={{ flexGrow: 1 }}>
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/point" element={<Point />} />
+            <Route path="/myinfo" element={<MyInfo />} /> {/* ✅ 추가 */}
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
