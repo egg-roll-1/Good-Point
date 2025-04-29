@@ -1,6 +1,5 @@
-// src/components/Footer.jsx
 import React from 'react';
-import './Footer.css';
+import './Footer.css'; // 또는 Link가 필요한 경우 둘 다
 
 const Footer = () => {
   return (

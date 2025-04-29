@@ -1,6 +1,8 @@
 .header-upper-navigator {
     position: fixed;
     left: 50%;
+    top : 0;
+    z-index: 1000;
     transform: translateX(-50%);
     width:393px;
     height: 30px;

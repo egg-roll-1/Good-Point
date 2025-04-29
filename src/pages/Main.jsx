@@ -38,7 +38,7 @@ const volunteerList = [
 const Main = () => {
     return (
       <div className="main-page" style={{ marginTop: '100px', padding: '20px', boxSizing: 'border-box' }}>
-        <SearchBar />
+        <SearchBar placeholder="검색어를 입력하세요." />
         <MenuGrid />
   
         <h2 style={{ fontSize: '14px', margin: '24px 0 12px', fontWeight: 'bold' }}>

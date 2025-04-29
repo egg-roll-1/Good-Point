@@ -8,6 +8,11 @@ import LoginPage from "../pages/LoginPage/LoginPage";
 import App from "../App";
 import SignUpPage from "../pages/SignUpPage/SignUpPage";
 
+import Point from "../pages/PointPage/Point";
+import MyInfo from "../pages/MyInfoPage/MyInfo";
+import FAQ from "../pages/FAQPage/FAQ";
+import VolunteerHistory from "../pages/VolunteerHistoryPage/VolunteerHistory";
+
 
 // 배열을 선언하고 반환해야 합니다 (화살표 함수에서 중괄호를 사용할 때)
 const router = createBrowserRouter([
@@ -30,7 +35,22 @@ const router = createBrowserRouter([
       {
         path: routes.signup,
         element: <SignUpPage />
+      },{
+        path: routes.point,
+        element: <Point />,
       },
+      {
+        path: routes.myinfo,
+        element: <MyInfo />,
+      },
+      {
+        path: routes.faq,
+        element: <FAQ />,
+      },
+      {
+        path: routes.history,
+        element: <VolunteerHistory/>
+      }
     ],
   },
 ]);
