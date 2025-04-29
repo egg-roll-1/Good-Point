@@ -1,9 +1,9 @@
 // src/pages/Main.jsx
 import React from 'react';
-import SearchBar from '../components/SearchBar.jsx';
-import Footer from '../components/Footer.jsx';
-import MenuGrid from '../components/MenuGrid.jsx';
-import VolunteerCard from '../components/VolunteerCard.jsx';
+import SearchBar from '../components/SearchBar/SearchBar.jsx';
+import Footer from '../components/Footer/Footer.jsx';
+import MenuGrid from '../components/MenuGrid/MenuGrid.jsx';
+import VolunteerCard from '../components/VolunteerCard/VolunteerCard.jsx';
 
 const volunteerList = [
     {
@@ -37,7 +37,7 @@ const volunteerList = [
   ];
 const Main = () => {
     return (
-      <div className="main-page" style={{ padding: '20px', boxSizing: 'border-box' }}>
+      <div className="main-page" style={{ marginTop: '100px', padding: '20px', boxSizing: 'border-box' }}>
         <SearchBar />
         <MenuGrid />
   
@@ -60,7 +60,8 @@ const Main = () => {
       display: 'grid',
       gridTemplateColumns: 'repeat(2, 1fr)',
       gap: '16px',
-      paddingBottom: '80px'
+      // paddingBottom: '80px',
+  
     },
   };
   

@@ -1,0 +1,33 @@
+.page-num-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    margin-top: 80px;
+    
+  }
+  
+  .page-button {
+    background: none;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 6px;
+    color: #333;
+  }
+  
+  .page-button.active {
+    background-color: #2F6FFF;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .arrow-button {
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 6px;
+  }
+  

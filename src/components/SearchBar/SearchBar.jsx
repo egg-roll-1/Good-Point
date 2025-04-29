@@ -1,6 +1,6 @@
 import React from 'react';
 import './SearchBar.css';
-import searchIcon from '../assets/Group 33910.svg';
+import searchIcon from '../../assets/Group 33910.png';
 
 const SearchBar = () => {
   return (
