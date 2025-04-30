@@ -7,7 +7,8 @@ const routes = {
     myinfo: "/myinfo",
     faq: "/faq",
     history: "/history",
-    
+    volmap: "/volmap",
+    voldetail: '/voldetail',
 }
 
 export default routes;

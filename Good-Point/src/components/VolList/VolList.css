@@ -1,17 +1,4 @@
-.volunteer-history {
-    max-width: 393px;
-    margin: 0 auto;
-    padding: 24px 20px 80px;
-    font-family: 'Noto Sans KR', sans-serif;
-  }
-  
-  .vh-title {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-  
-  .vh-list {
+.vl-list {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -19,13 +6,13 @@
     margin-bottom: 24px;
   }
   
-  .vh-item {
+  .vl-item {
     display: flex;
     align-items: center;
     gap:12px;
   }
   
-  .vh-category {
+  .vl-category {
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -39,30 +26,29 @@
   }
   
   /* 카테고리 색상 */
-  .vh-category.보건 {
+  .vl-category.보건 {
     background-color: #42C7C6;
   }
-  .vh-category.생활 {
+  .vl-category.생활 {
     background-color: #FFA52D;
   }
-  .vh-category.재난 {
+  .vl-category.재난 {
     background-color: #FF6B6B;
   }
   
-  .vh-info {
+  .vl-info {
     display: flex;
     flex-direction: column;
   }
   
-  .vh-title-line {
+  .vl-title-line {
     font-size: 15px;
     color: #333;
     margin-bottom: 4px;
   }
   
-  .vh-date {
+  .vl-date {
     margin-top: -4px;
     font-size: 13px;
     color: #999;
   }
-  

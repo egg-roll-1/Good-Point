@@ -1,6 +1,8 @@
 // src/components/PageNum.jsx
 import React from 'react';
 import './PageNum.css';
+import leftArrow from "../../assets/leftArrow.png"
+import rightArrow from "../../assets/rightArrow.png"
 
 const PageNum = ({ currentPage, totalPages, onPageChange }) => {
   const handleClick = (page) => {
@@ -27,9 +29,9 @@ const PageNum = ({ currentPage, totalPages, onPageChange }) => {
 
   return (
     <div className="page-num-wrapper">
-      <button onClick={() => handleClick(currentPage - 1)} className="arrow-button">◀️</button>
+      <img onClick={() => handleClick(currentPage - 1)} className="arrow-button" src={leftArrow}/>
       {renderPageNumbers()}
-      <button onClick={() => handleClick(currentPage + 1)} className="arrow-button">▶️</button>
+      <img onClick={() => handleClick(currentPage + 1)} className="arrow-button" src={rightArrow}/>
     </div>
   );
 };
