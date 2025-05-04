@@ -1,6 +1,6 @@
 // src/components/PageNum.jsx
 import React from 'react';
-import './PageNum.css';
+import styles from './PageNum.module.css';
 import leftArrow from "../../assets/leftArrow.png"
 import rightArrow from "../../assets/rightArrow.png"
 
@@ -18,7 +18,7 @@ const PageNum = ({ currentPage, totalPages, onPageChange }) => {
         <button
           key={i}
           onClick={() => handleClick(i)}
-          className={`page-button ${currentPage === i ? 'active' : ''}`}
+          className={`${styles.pagebutton} ${currentPage === i ? styles.active : ''}`}
         >
           {i}
         </button>
@@ -28,10 +28,10 @@ const PageNum = ({ currentPage, totalPages, onPageChange }) => {
   };
 
   return (
-    <div className="page-num-wrapper">
-      <img onClick={() => handleClick(currentPage - 1)} className="arrow-button" src={leftArrow}/>
+    <div className={styles.pagenumwrapper}>
+      <img onClick={() => handleClick(currentPage - 1)} className={styles.arrowbutton} src={leftArrow}/>
       {renderPageNumbers()}
-      <img onClick={() => handleClick(currentPage + 1)} className="arrow-button" src={rightArrow}/>
+      <img onClick={() => handleClick(currentPage + 1)} className={styles.arrowbutton} src={rightArrow}/>
     </div>
   );
 };

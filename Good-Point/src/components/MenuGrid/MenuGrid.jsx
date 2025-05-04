@@ -1,6 +1,6 @@
 // src/components/MenuGrid.jsx
 import React from 'react';
-import './MenuGrid.css';
+import styles from './MenuGrid.module.css';
 
 const menuItems = [
   { icon: '', label: '지역봉사' },
@@ -13,20 +13,20 @@ const menuItems = [
 
 const MenuGrid = () => {
   return (
-    <div className="menu-grid-wrapper">
-      <div className="menu-row">
+    <div className={styles.menugridwrapper}>
+      <div className={styles.menurow}>
         {menuItems.slice(0, 4).map((item, index) => (
-          <div key={index} className="menu-item">
-            <div className="menu-icon">{item.icon}</div>
-            <div className="menu-label">{item.label}</div>
+          <div key={index} className={styles.menuitem}>
+            <div className={styles.menuicon}>{item.icon}</div>
+            <div className={styles.menulabel}>{item.label}</div>
           </div>
         ))}
       </div>
-      <div className="menu-row center-row">
+      <div className={`${styles.menurow} ${styles.centerrow}`}>
         {menuItems.slice(4).map((item, index) => (
-          <div key={index} className="menu-item">
-            <div className="menu-icon">{item.icon}</div>
-            <div className="menu-label">{item.label}</div>
+          <div key={index} className={styles.menuitem}>
+            <div className={styles.menuicon}>{item.icon}</div>
+            <div className={styles.menulabel}>{item.label}</div>
           </div>
         ))}
       </div>

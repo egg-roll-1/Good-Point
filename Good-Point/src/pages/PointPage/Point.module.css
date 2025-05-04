@@ -1,36 +1,36 @@
-.point-page {
+.pointpage {
     padding: 24px 20px 80px;
     max-width: 393px;
     margin: 0 auto;
     font-family: 'Noto Sans KR', sans-serif;
   }
   
-  .point-title {
+  .pointtitle {
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 24px;
     text-align: left;
   }
   
-  .gauge-container {
+  .gaugecontainer {
     display: flex;
     justify-content: center;
     margin-bottom: 32px;
   }
   
-  .shiba-image {
+  .shibaimage {
     width: 160px;
     display: block;
     margin: 0 auto 24px auto;
   }
   
-  .point-value {
+  .pointvalue {
     font-size: 14px;
     text-align: center;
     margin-bottom: 24px;
   }
   
-  .point-button {
+  .pointbutton {
     display: block;
     margin: 0 auto;
     background-color: #2F6FFF;

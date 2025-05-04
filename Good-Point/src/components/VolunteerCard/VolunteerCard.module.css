@@ -1,4 +1,4 @@
-.volunteer-card {
+.volunteercard {
     width: 160px;
     background-color: #fff;
     border: 1px solid #ddd;
@@ -9,7 +9,7 @@
     color: #333;
   }
   
-  .badge-row {
+  .badgerow {
     display: flex;
     gap: 4px;
     margin-bottom: 8px;

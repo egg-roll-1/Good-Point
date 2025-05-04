@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import SearchBar from '../../components/SearchBar/SearchBar.jsx';
 import PageNum from '../../components/PageNum/PageNum.jsx';
-import './FAQ.css';
+import styles from './FAQ.module.css';
 
 const faqData = [
   "비밀번호를 여러번 틀려서 계정이 잠겼는데요. 어떻게 풀 수 있나요?",
@@ -15,16 +15,16 @@ const FAQ = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   return (
-    <div className="faq-page">
-      <h2 className="faq-title">자주 묻는 질문</h2>
+    <div className={styles.faqpage}>
+      <h2 className={styles.faqtitle}>자주 묻는 질문</h2>
 
       <SearchBar placeholder="무엇이든 찾아보세요" />
 
-      <div className="faq-list">
+      <div className={styles.faqlist}>
         {faqData.map((question, index) => (
-          <div key={index} className="faq-item">
-            <span className="faq-q">Q</span>
-            <span className="faq-question">{question}</span>
+          <div key={index} className={styles.faqitem}>
+            <span className={styles.faqq}>Q</span>
+            <span className={styles.faqquestion}>{question}</span>
           </div>
         ))}
       </div>

@@ -1,6 +1,6 @@
 /* VolunteerMap.css - 반응형으로 수정 */
 
-.volunteer-map-container {
+.volunteermapcontainer {
   width: 100%;
   height: 100vh; /* 뷰포트 높이 사용 */
   position: relative;
@@ -10,7 +10,7 @@
   max-width: 768px; /* 태블릿 이상에서 최대 너비 설정 */
 }
 
-.loading-message {
+.loadingmessage {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,7 +19,7 @@
   text-align: center;
 }
 
-.error-container {
+.errorcontainer {
   text-align: center;
   padding: 5vh;
   height: 100%;
@@ -28,18 +28,18 @@
   justify-content: center;
 }
 
-.map-container {
+.mapcontainer {
   width: 100%;
   height: 100%;
 }
 
-.map-view {
+.mapview {
   width: 100%;
   height: 100%;
 }
 
 /* 스와이프 영역 */
-.swipeable-area {
+.swipeablearea {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -50,7 +50,7 @@
 }
 
 /* 바텀 시트 스타일 */
-.bottom-sheet {
+.bottomsheet {
   background-color: white;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
@@ -63,12 +63,12 @@
   width: 100%;
 }
 
-.bottom-sheet.expanded {
+.bottomsheet.expanded {
   height: 85vh; /* 뷰포트 높이의 85% */
   max-height: 650px; /* 최대 높이 제한 */
 }
 
-.search-bar {
+.searchbar {
   margin: 10px 4%;
   padding: 10px 15px;
   background-color: #f5f5f5;
@@ -78,40 +78,40 @@
   gap: 10px;
 }
 
-.search-icon {
+.searchicon {
   color: #999;
 }
 
-.search-text {
+.searchtext {
   color: #999;
 }
 
 /* 바텀 시트 내용 */
-.bottom-sheet-content {
+.bottomsheetcontent {
   padding: 20px 4%;
   margin-top: 10px;
   overflow-y: auto; /* 내용이 많을 경우 스크롤 허용 */
   max-height: calc(85vh - 120px); /* 스크롤 영역 최대 높이 (총 높이 - 검색바/헤더 높이) */
 }
 
-.bottom-sheet-content h3 {
+.bottomsheetcontent h3 {
   margin: 0 0 15px 0;
   font-size: 1rem; /* rem 단위 사용 */
 }
 
-.volunteer-info {
+.volunteerinfo {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-.volunteer-item {
+.volunteeritem {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.volunteer-icon {
+.volunteericon {
   width: 30px;
   height: 30px;
   border-radius: 50%;
@@ -134,12 +134,12 @@
   background-color: #f79f4d;
 }
 
-.volunteer-text {
+.volunteertext {
   font-size: 0.875rem; /* rem 단위 사용 */
 }
 
 /* 스와이프 표시기 */
-.bottom-sheet:after {
+.bottomsheet:after {
   content: '';
   position: absolute;
   top: 5px;
@@ -153,7 +153,7 @@
   display: none;
 }
 
-.bottom-sheet:not(.expanded):after {
+.bottomsheet:not(.expanded):after {
   display: block;
 }
 
@@ -176,13 +176,13 @@
 
 @media (min-width: 768px) {
   /* 태블릿 이상 */
-  .volunteer-map-container {
+  .volunteermapcontainer {
     border: 1px solid #ddd; /* 큰 화면에서만 테두리 표시 */
     height: 80vh; /* 데스크톱에서는 전체 높이의 80%만 사용 */
     max-height: 800px;
   }
   
-  .bottom-sheet.expanded {
+  .bottomsheet.expanded {
     max-height: 500px; /* 큰 화면에서는 최대 높이 제한 */
   }
 }
@@ -193,14 +193,14 @@
     height: 25vh;
   }
   
-  .bottom-sheet.expanded {
+  .bottomsheet.expanded {
     height: 75vh;
   }
 }
 
 /* 아이폰 노치 또는 홈 인디케이터 대응 (safe area) */
 @supports (padding-bottom: env(safe-area-inset-bottom)) {
-  .bottom-sheet {
+  .bottomsheet {
     padding-bottom: calc(15px + env(safe-area-inset-bottom));
   }
 }
@@ -208,12 +208,12 @@
 /* VolunteerMap.css - 검색 입력 필드 스타일 업데이트 */
 
 /* 검색 폼 */
-.search-form {
+.searchform {
   width: 100%;
 }
 
 /* 검색 바 스타일 업데이트 */
-.search-bar {
+.searchbar {
   margin: 10px 4%;
   padding: 8px 15px;
   background-color: #f5f5f5;
@@ -225,7 +225,7 @@
 }
 
 /* 검색 아이콘 */
-.search-icon {
+.searchicon {
   color: #999;
   font-size: 1.1rem;
   display: flex;
@@ -233,7 +233,7 @@
 }
 
 /* 검색 입력 필드 */
-.search-input {
+.searchinput {
   flex: 1;
   border: none;
   background: transparent;
@@ -244,28 +244,28 @@
   width: 100%;
 }
 
-.search-input::placeholder {
+.searchinput::placeholder {
   color: #999;
 }
 
 /* 모바일 화면에서 입력 필드 크기 조정 */
 @media (max-width: 320px) {
-  .search-bar {
+  .searchbar {
     padding: 6px 12px;
   }
   
-  .search-input {
+  .searchinput {
     font-size: 0.9rem;
     padding: 6px 0;
   }
 }
 
-.searchbar-img {
+.searchbarimg {
   width: 14px;
   height: 14px;
 }
 
-.volunteer-titletext{
+.volunteertitletext{
   font-size: 20px;
   font-weight: 700;
   color: #3b82f6;

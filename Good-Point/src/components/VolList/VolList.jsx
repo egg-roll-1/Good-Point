@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import PageNum from "../../components/PageNum/PageNum"
-import "./VolList.css"
+import styles from "./VolList.module.css"
 
 const VolList = () => {
   const navigate = useNavigate();
@@ -28,17 +28,17 @@ const VolList = () => {
   };
 
     return <div>
-        <div className="vl-list">
+        <div className={styles.vllist}>
                 {volData.map((item, index) => (
-              <div className="vl-item" 
+              <div className={styles.vlitem} 
               key={index}
               onClick={() => handleItemClick(item)}
               style={{ cursor: 'pointer' }}
               >
-              <div className={`vl-category ${item.category}`}>{item.category}</div>
-              <div className="vl-info">
-              <p className="vl-title-line">{item.title}</p>
-              <p className="vl-date">{item.date}</p>
+              <div className={`${styles.vlcategory} ${styles[item.category.toLowerCase()]}`}>{item.category}</div>
+              <div className={styles.vlinfo}>
+              <p className={styles.vltitleline}>{item.title}</p>
+              <p className={styles.vldate}>{item.date}</p>
             </div>
           </div>
         ))}

@@ -1,5 +1,5 @@
 /* VolDetailPage.css */
-.vol-detail-container {
+.voldetailcontainer {
     max-width: 700px;
     margin: 0 auto;
     padding: 24px 20px;
@@ -9,13 +9,13 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
   
-  .vol-detail-header {
+  .voldetailheader {
     display: flex;
     margin-top: 47px;
     align-items: center;
   }
   
-  .vol-category {
+  .volcategory {
     width: 55px;
     height: 55px;
     border-radius: 50%;
@@ -29,19 +29,19 @@
   }
   
   /* 카테고리 색상 */
-  .vol-category.보건 {
+  .volcategory.보건 {
     background-color: #42C7C6;
   }
   
-  .vol-category.생활 {
+  .volcategory.생활 {
     background-color: #FFA52D;
   }
   
-  .vol-category.재난 {
+  .volcategory.재난 {
     background-color: #FF6B6B;
   }
   
-  .vol-detail-title {
+  .voldetailtitle {
     font-size: 14px;
     font-weight: 700;
     color: #333333;
@@ -49,7 +49,7 @@
     margin-bottom: 15px;
   }
   
-  .vol-detail-date {
+  .voldetaildate {
     font-size: 14px;
     color: #999;
     border-bottom: 1px solid #eaeaea;
@@ -57,7 +57,7 @@
     justify-content: flex-end;
   }
   
-  .vol-detail-info {
+  .voldetailinfo {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -65,27 +65,27 @@
     margin-top: 47px;
   }
   
-  .vol-detail-item {
+  .voldetailitem {
     display: flex;
     flex-direction: column;
     gap: 8px;
   }
   
-  .vol-detail-item h3 {
+  .voldetailitem h3 {
     font-size: 16px;
     font-weight: 600;
     color: #666;
     margin: 0;
   }
   
-  .vol-detail-item p {
+  .voldetailitem p {
     font-size: 15px;
     color: #333;
     margin: 0;
     line-height: 1.6;
   }
   
-  .vol-detail-description {
+  .voldetaildescription {
     white-space: pre-line; /* 줄바꿈 유지 */
     padding: 16px;
     background-color: #f9f9f9;
@@ -94,7 +94,7 @@
     border-right: 4px solid #3b82f6;
   }
   
-  .vol-apply-button {
+  .volapplybutton {
     width: 100%;
     padding: 14px 0;
     background-color: #3b82f6;
@@ -107,23 +107,23 @@
     transition: background-color 0.2s;
   }
   
-  .vol-apply-button:hover {
+  .volapplybutton:hover {
     background-color: #2563eb;
   }
   
   /* 모바일 반응형 디자인 */
   @media (max-width: 480px) {
-    .vol-detail-container {
+    .voldetailcontainer {
       border-radius: 0;
       box-shadow: none;
       padding: 16px;
     }
     
-    .vol-detail-title {
+    .voldetailtitle {
       font-size: 18px;
     }
     
-    .vol-detail-category {
+    .voldetailcategory {
       width: 60px;
       height: 60px;
       font-size: 14px;
@@ -132,13 +132,13 @@
   
   /* 상단에 헤더가 있는 경우를 위한 여백 */
   @media (min-width: 768px) {
-    .vol-detail-container {
+    .voldetailcontainer {
       margin-top: 24px;
       margin-bottom: 24px;
     }
   }
 
-.vol-detail-button {
+.voldetailbutton {
     display: flex;
     justify-content: center;
     gap: 30px;

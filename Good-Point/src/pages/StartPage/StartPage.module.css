@@ -1,4 +1,4 @@
-.start-frame {
+.startframe {
     position: relative;
     width: 393px;
     height: 446px;
@@ -8,7 +8,7 @@
     transform: translateX(-50%);
 }
 
-.start-frame .start-title {
+.startframe .starttitle {
     position: absolute;
     width: 393px;
     height: 90px;
@@ -23,7 +23,7 @@
     line-height: 29.9px;
 }
 
-.start-frame .start-div {
+.startframe .startdiv {
     position: absolute;
     width: 300px;
     height: 206px;
@@ -31,7 +31,7 @@
     left: 46px;
 }
 
-.start-frame .start-overlap {
+.startframe .startoverlap {
     position: relative;
     display: flex;
     width: 174px;
@@ -40,7 +40,7 @@
     left: 63px;
 }
 
-.start-frame .start-findid {
+.startframe .startfindid {
     position: relative;
    
     width: 87px;
@@ -57,7 +57,7 @@
     white-space: nowrap;
 }
 
-.start-frame .start-findpw {
+.startframe .startfindpw {
     position: relative;
     display: flex;
     width: 97px;
@@ -74,7 +74,7 @@
     white-space: nowrap;
 }
 
-.start-frame .start-div2 {
+.startframe .startdiv2 {
     position: absolute;
     width: 300px;
     height: 140px;
@@ -82,13 +82,13 @@
     left: 0;
 }
 
-.start-frame .start-btn {
+.startframe .startbtn {
     width: 302px;
     height: 60px;
    
 }
 
-.start-frame .start-pwbtn {
+.startframe .startpwbtn {
     position: absolute;
     top: 90px;
     left: 0;

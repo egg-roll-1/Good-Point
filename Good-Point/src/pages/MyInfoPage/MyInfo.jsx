@@ -1,6 +1,6 @@
 // src/pages/MyInfo.jsx
 import React from 'react';
-import './MyInfo.css';
+import styles from './MyInfo.module.css';
 
 const MyInfo = (id, address, email, phone, area, signupDate) => {
 
@@ -13,9 +13,9 @@ const MyInfo = (id, address, email, phone, area, signupDate) => {
     signupDate: {signupDate}
 }]
   return (
-    <div className="myinfo-page">
-      <h2 className="myinfo-title">회원 정보 조회</h2>
-      <div className="myinfo-list">
+    <div className={styles.myinfopage}>
+      <h2 className={styles.myinfotitle}>회원 정보 조회</h2>
+      <div className={styles.myinfolist}>
         <div>아이디 : {infoData.id}</div>
         <div>주소 : {infoData.address}</div>
         <div>이메일 : {infoData.email}</div>
@@ -23,7 +23,7 @@ const MyInfo = (id, address, email, phone, area, signupDate) => {
         <div>거주지역 : {infoData.area}</div>
         <div>회원가입 일자 : {infoData.signupDate}</div>
       </div>
-      <div className="myinfo-buttons">
+      <div className={styles.myinfobuttons}>
         <button>비밀번호 변경</button>
         <button>회원 탈퇴</button>
       </div>

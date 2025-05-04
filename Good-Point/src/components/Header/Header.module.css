@@ -1,4 +1,4 @@
-.header-upper-navigator {
+.headeruppernavigator {
     position: fixed;
     left: 50%;
     top : 0;
@@ -10,13 +10,13 @@
     justify-content: center;
 }
 
-.header-upper-navigator .header-overlap-group {
+.headeruppernavigator .headeroverlapgroup {
     position: relative;
     height: 30px;
     background-color: #ffffff;
 }
 
-.header-upper-navigator .header-img {
+.headeruppernavigator .headerimg {
     position: absolute;
     width: 20px;
     height: 20px;
@@ -24,7 +24,7 @@
     left: 341px;
 }
 
-.header-upper-navigator .header-title {
+.headeruppernavigator .headertitle {
     position: absolute;
     width: 84px;
     height: 24px;
@@ -40,7 +40,7 @@
     white-space: nowrap;
 }
 
-.header-upper-navigator .header-login {
+.headeruppernavigator .headerlogin {
     position: absolute;
     width: 71px;
     height: 17px;

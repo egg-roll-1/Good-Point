@@ -1,4 +1,4 @@
-.page-num-wrapper {
+.pagenumwrapper {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -7,7 +7,7 @@
     
   }
   
-  .page-button {
+  .pagebutton {
     background: none;
     border: none;
     font-size: 14px;
@@ -17,13 +17,13 @@
     color: #333;
   }
   
-  .page-button.active {
+  .pagebutton.active {
     background-color: #2F6FFF;
     color: white;
     font-weight: bold;
   }
   
-  .arrow-button {
+  .arrowbutton {
     background: none;
     border: none;
     font-size: 16px;

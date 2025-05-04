@@ -1,4 +1,4 @@
-.vl-list {
+.vllist {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -6,13 +6,13 @@
     margin-bottom: 24px;
   }
   
-  .vl-item {
+  .vlitem {
     display: flex;
     align-items: center;
     gap:12px;
   }
   
-  .vl-category {
+  .vlcategory {
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -26,28 +26,28 @@
   }
   
   /* 카테고리 색상 */
-  .vl-category.보건 {
+  .vlcategory.보건 {
     background-color: #42C7C6;
   }
-  .vl-category.생활 {
+  .vlcategory.생활 {
     background-color: #FFA52D;
   }
-  .vl-category.재난 {
+  .vlcategory.재난 {
     background-color: #FF6B6B;
   }
   
-  .vl-info {
+  .vlinfo {
     display: flex;
     flex-direction: column;
   }
   
-  .vl-title-line {
+  .vltitleline {
     font-size: 15px;
     color: #333;
     margin-bottom: 4px;
   }
   
-  .vl-date {
+  .vldate {
     margin-top: -4px;
     font-size: 13px;
     color: #999;

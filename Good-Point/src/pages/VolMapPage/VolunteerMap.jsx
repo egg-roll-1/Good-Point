@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useSwipeable } from 'react-swipeable'; // 먼저 'npm install react-swipeable' 실행 필요
 import VolList from "../../components/VolList/VolList";
 import PageNum from '../../components/PageNum/PageNum';
-import './VolunteerMap.css';
+import styles from './VolunteerMap.module.css';
 
 import Line from "../../assets/Line.png"
 import Group33910 from "../../assets/Group 33910.png"
@@ -150,41 +150,41 @@ const VolunteerMap = () => {
   };
 
   return (
-    <div className="volunteer-map-container">
+    <div className={styles.volunteermapcontainer}>
       {isLoading ? (
-        <div className="loading-message">위치 정보를 불러오는 중...</div>
+        <div className={styles.loadingmessage}>위치 정보를 불러오는 중...</div>
       ) : locationError ? (
-        <div className="error-container">
+        <div className={styles.errorcontainer}>
           <p>위치 정보를 가져오는데 문제가 발생했습니다: {locationError}</p>
           <p>기본 위치(제주도)로 지도를 표시합니다.</p>
           <div
             id="map"
             ref={mapContainer}
-            className="map-view"
+            className={styles.mapview}
           />
         </div>
       ) : (
-        <div className="map-container">
+        <div className={styles.mapcontainer}>
           <div
             id="map"
             ref={mapContainer}
-            className="map-view"
+            className={styles.mapview}
           />
         </div>
       )}
 
       {/* 스와이프 영역: 바텀 시트와 핸들 모두 포함 */}
-      <div {...swipeHandlers} className="swipeable-area">
+      <div {...swipeHandlers} className={styles.swipeablearea}>
 
         {/* 바텀 시트 */}
-        <div className={`bottom-sheet ${bottomSheetVisible ? 'expanded' : ''}`}>
+        <div className={`${styles.bottomsheet} ${bottomSheetVisible ? styles.expanded : ''}`}>
           {/* 검색 바 - 입력 가능한 form으로 변경, 버튼 제거 */}
-          <form className="search-form" onSubmit={handleSearch}>
-            <div className="search-bar">
-              <img className="searchbar-img" src={Group33910} />
+          <form className={styles.searchform} onSubmit={handleSearch}>
+            <div className={styles.searchbar}>
+              <img className={styles.searchbarimg} src={Group33910} />
               <input
                 type="text"
-                className="search-input"
+                className={styles.searchinput}
                 placeholder="지역 검색"
                 value={searchKeyword}
                 onChange={handleSearchChange}
@@ -194,8 +194,8 @@ const VolunteerMap = () => {
 
           {/* 바텀 시트 봉사정보 */}
           {bottomSheetVisible && (
-            <div className="bottom-sheet-content">
-              <div className='volunteer-titletext'>지역 봉사</div>
+            <div className={styles.bottomsheetcontent}>
+              <div className={styles.volunteertitletext}>지역 봉사</div>
               <VolList/>
               <PageNum
               currentPage={currentPage}

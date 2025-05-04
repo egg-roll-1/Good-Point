@@ -1,4 +1,4 @@
-.login-frame {
+.loginframe {
     display: flex;
     flex-direction: column;
     width: 337px;
@@ -8,7 +8,7 @@
     position: relative;
 }
 
-.login-frame .login-textlogin {
+.loginframe .logintextlogin {
     position: relative;
     align-self: stretch;
     height: 52px;
@@ -20,7 +20,7 @@
     line-height: normal;
 }
 
-.login-frame .login-inputid {
+.loginframe .logininputid {
     position: relative;
     width: 300px;
     height: 60px;
@@ -32,7 +32,7 @@
     color:#d9d9d9;
 }
 
-.login-frame .login-inputpw {
+.loginframe .logininputpw {
     position: relative;
     width: 300px;
     height: 60px;
@@ -44,20 +44,20 @@
     color:#d9d9d9;
 }
 
-.login-frame .login-div-wrapper {
+.loginframe .logindivwrapper {
     position: relative;
     width: 302px;
     height: 31.21px;
 }
 
-.login-frame .login-overlap-group {
+.loginframe .loginoverlapgroup {
     height: 32px;
     top: -1px;
     position: relative;
     width: 300px;
 }
 
-.login-frame .login-line {
+.loginframe .loginline {
     top: 0;
     position: absolute;
     width: 300px;
@@ -66,7 +66,7 @@
     object-fit: cover;
 }
 
-.login-frame .login-line2 {
+.loginframe .loginline2 {
     top: 30px;
     position: absolute;
     width: 300px;
@@ -75,7 +75,7 @@
     object-fit: cover;
 }
 
-.login-frame .login-p {
+.loginframe .loginp {
     position: absolute;
     width: 200px;
     height: 30px;

@@ -1,4 +1,4 @@
-.signup-frame {
+.signupframe {
     display: flex;
     flex-direction: column;
     width: 300px;
@@ -11,12 +11,12 @@
 }
 
 /*공통 placeholder 글자색 변경경*/
-.signup-frame ::placeholder {
+.signupframe ::placeholder {
     color: #d9d9d9; 
     opacity: 1;
   }
 
-.signup-frame .signup-text {
+.signupframe .signuptext {
     position: relative;
     align-self: stretch;
     height: 52px;
@@ -29,14 +29,14 @@
     line-height: normal;
 }
 
-.signup-frame .signup-group {
+.signupframe .signupgroup {
     position: relative;
     width: 300px;
     height: 60px;
     display: flex;
 }
 
-.signup-frame .signup-nickname {
+.signupframe .signupnickname {
     position: relative;
     width: 200px;
     height: 60px;
@@ -48,12 +48,12 @@
     color: #d9d9d9;
 }
 
-.signup-frame .signup-checkbtn {
+.signupframe .signupcheckbtn {
     position: absolute;
     left: 210px;
 }
 
-.signup-frame .signup-id {
+.signupframe .signupid {
     position: relative;
     width: 200px;
     height: 60px;
@@ -65,7 +65,7 @@
     color: #d9d9d9;
 }
 
-.signup-frame .signup-pw {
+.signupframe .signuppw {
     position: relative;
     width: 300px;
     height: 60px;
@@ -78,7 +78,7 @@
 }
 
 
-.signup-frame .signup-checkpw {
+.signupframe .signupcheckpw {
     position: relative;
     width: 300px;
     height: 60px;
@@ -92,7 +92,7 @@
 
 
 
-.signup-frame .signup-checkbox {
+.signupframe .signupcheckbox {
     font-size: 14px;
     white-space: nowrap;
     color: #d9d9d9;

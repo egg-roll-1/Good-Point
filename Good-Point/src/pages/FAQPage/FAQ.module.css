@@ -1,11 +1,11 @@
-.faq-page {
+.faqpage {
     max-width: 393px;
     margin: 0 auto;
     padding: 20px;
     font-family: 'Noto Sans KR', sans-serif;
   }
   
-  .faq-title {
+  .faqtitle {
     font-size: 20px;
     font-weight: bold;
     text-align: center;
@@ -14,7 +14,7 @@
   }
   
   /* 서치바 스타일 */
-  .search-bar {
+  .searchbar {
     display: flex;
     align-items: center;
     border: 2px solid #5c6df8;
@@ -24,14 +24,14 @@
     background: #fff;
   }
   
-  .search-img {
+  .searchimg {
     width: 18px;
     height: 18px;
     margin-right: 10px;
     opacity: 0.5;
   }
   
-  .search-input {
+  .searchinput {
     flex: 1;
     border: none;
     font-size: 14px;
@@ -39,13 +39,13 @@
   }
   
   /* 질문 항목 */
-  .faq-list {
+  .faqlist {
     display: flex;
     flex-direction: column;
     gap: 16px;
   }
   
-  .faq-item {
+  .faqitem {
     font-size: 14px;
     padding: 12px;
     border-bottom: 1px solid #eee;
@@ -54,13 +54,13 @@
     gap: 8px;
   }
   
-  .faq-q {
+  .faqq {
     color: #5c6df8;
     font-weight: bold;
     font-size: 16px;
   }
   
-  /* 페이지네이션 */
+  /* 페이지네이션
   .page-num-wrapper {
     display: flex;
     justify-content: center;
@@ -95,4 +95,4 @@
     font-size: 18px;
     cursor: pointer;
   }
-  
+   */

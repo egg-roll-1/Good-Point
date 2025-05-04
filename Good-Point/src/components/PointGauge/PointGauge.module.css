@@ -1,4 +1,4 @@
-.gauge-wrapper {
+.gaugewrapper {
     width: 259px;
     height: 29px;
     background-color: #ffccd3;
@@ -7,7 +7,7 @@
     margin: 0 auto;
   }
   
-  .gauge-fill {
+  .gaugefill {
     height: 100%;
     background-color: #e03131;
     border-radius: 60px 0 0 60px;

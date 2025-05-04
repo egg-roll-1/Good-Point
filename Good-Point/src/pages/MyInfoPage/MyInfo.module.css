@@ -1,34 +1,34 @@
-.myinfo-page {
+.myinfopage {
     max-width: 393px;
     margin: 0 auto;
     padding: 24px 20px 80px;
     font-family: 'Noto Sans KR', sans-serif;
   }
   
-  .myinfo-title {
+  .myinfotitle {
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 24px;
   }
   
-  .myinfo-list {
+  .myinfolist {
     list-style: none;
     padding: 0;
     margin-bottom: 32px;
   }
   
-  .myinfo-list li {
+  .myinfolist li {
     font-size: 16px;
     margin-bottom: 16px;
   }
   
-  .myinfo-buttons {
+  .myinfobuttons {
     display: flex;
     justify-content: center;
     gap: 16px;
   }
   
-  .myinfo-buttons button {
+  .myinfobuttons button {
     background-color: #2F6FFF;
     color: white;
     border: none;

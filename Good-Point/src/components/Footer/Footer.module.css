@@ -13,14 +13,14 @@
     
   }
   
-  .footer-nav {
+  .footernav {
     width: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
   }
   
-  .footer-item {
+  .footeritem {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -30,12 +30,12 @@
     user-select: none;
   }
   
-  .footer-icon {
+  .footericon {
     font-size: 20px;
     margin-bottom: 4px;
   }
   
-  .footer-label {
+  .footerlabel {
     font-size: 11px;
   }
   
