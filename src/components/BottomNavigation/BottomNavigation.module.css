@@ -1,0 +1,20 @@
+.navigation {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: var(--breakpoint-xs);
+  padding: var(--space-md);
+  width: 100%;
+  border-top: 1px solid #eeeeee;
+}
+
+.footericon {
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+
+.footerlabel {
+  font-size: 11px;
+  color: #555;
+}

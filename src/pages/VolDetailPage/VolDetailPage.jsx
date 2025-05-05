@@ -5,6 +5,7 @@ import styles from './VolDetailPage.module.css';
 
 import VolList from '../../components/VolList/VolList';
 import Button from '../../components/Button/Button';
+import { Layout } from '../../components/Layout/Layout';
 
 const VolDetailPage = () => {
   const location = useLocation();
@@ -12,38 +13,40 @@ const VolDetailPage = () => {
     location.state || {};
 
   return (
-    <div className={styles.voldetailcontainer}>
-      <div className={styles.voldetailheader}>
-        <div className={`${styles.volcategory} ${styles[category]}`}>{category}</div>
-        <div className={styles.voldetailtitle}>{title}</div>
-      </div>
-      <div className={styles.voldetaildate}>{date}</div>
-      <div className={styles.voldetailinfo}>
-        <div className={styles.voldetailitem}>
-          <h3>모집 인원</h3>
-          <p>{memberNum}</p>
+    <Layout>
+      <div className={styles.voldetailcontainer}>
+        <div className={styles.voldetailheader}>
+          <div className={`${styles.volcategory} ${styles[category]}`}>{category}</div>
+          <div className={styles.voldetailtitle}>{title}</div>
         </div>
+        <div className={styles.voldetaildate}>{date}</div>
+        <div className={styles.voldetailinfo}>
+          <div className={styles.voldetailitem}>
+            <h3>모집 인원</h3>
+            <p>{memberNum}</p>
+          </div>
 
-        <div className={styles.voldetailitem}>
-          <h3>모집 기간</h3>
-          <p>{recruitperiod}</p>
-        </div>
+          <div className={styles.voldetailitem}>
+            <h3>모집 기간</h3>
+            <p>{recruitperiod}</p>
+          </div>
 
-        <div className={styles.voldetailitem}>
-          <h3>봉사 기간</h3>
-          <p>{volperiod}</p>
-        </div>
+          <div className={styles.voldetailitem}>
+            <h3>봉사 기간</h3>
+            <p>{volperiod}</p>
+          </div>
 
-        <div className={styles.voldetailitem}>
-          <h3>상세 내용</h3>
-          <p className={styles.voldetaildescription}>{voldetail}</p>
+          <div className={styles.voldetailitem}>
+            <h3>상세 내용</h3>
+            <p className={styles.voldetaildescription}>{voldetail}</p>
+          </div>
+        </div>
+        <div className={styles.voldetailbutton}>
+          <Button type={'action'} text={'신청하기'} />
+          <Button type={'action'} text={'장바구니'} />
         </div>
       </div>
-      <div className={styles.voldetailbutton}>
-        <Button type={'action'} text={'신청하기'} />
-        <Button type={'action'} text={'장바구니'} />
-      </div>
-    </div>
+    </Layout>
   );
 };
 

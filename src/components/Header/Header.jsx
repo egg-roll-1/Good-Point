@@ -1,16 +1,26 @@
+import { ArrowLeft } from 'lucide-react';
+import PropTypes from 'prop-types';
+import { Logo } from '../Logo/Logo';
+import { HStack } from '../Stack/HStack';
 import styles from './Header.module.css';
-import bell from '../../assets/bell.png';
 
-const Header = () => {
+const Header = ({ back, children }) => {
   return (
-    <div className={styles.headeruppernavigator}>
-      <div className={styles.headeroverlapgroup}>
-        <img className={styles.headerimg} src={bell} />
-        <div className={styles.headertitle}>Good-Point</div>
-        <div className={styles.headerlogin}>로그인/회원가입</div>
-      </div>
-    </div>
+    <header className={styles.header}>
+      <HStack between>
+        <HStack gap={3}>
+          {back && <ArrowLeft style={{ color: 'var(--primary-fg)' }} />}
+          <Logo />
+        </HStack>
+        <div>{children}</div>
+      </HStack>
+    </header>
   );
+};
+
+Header.propTypes = {
+  back: PropTypes.bool,
+  children: PropTypes.element,
 };
 
 export default Header;

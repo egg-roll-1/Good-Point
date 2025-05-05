@@ -1,8 +1,7 @@
-// src/pages/Main.jsx
 import React from 'react';
-import SearchBar from '../components/SearchBar/SearchBar.jsx';
-import Footer from '../components/Footer/Footer.jsx';
+import { Layout } from '../components/Layout/Layout.jsx';
 import MenuGrid from '../components/MenuGrid/MenuGrid.jsx';
+import SearchBar from '../components/SearchBar/SearchBar.jsx';
 import VolunteerCard from '../components/VolunteerCard/VolunteerCard.jsx';
 
 const volunteerList = [
@@ -37,23 +36,22 @@ const volunteerList = [
 ];
 const Main = () => {
   return (
-    <div
-      className="main-page"
-      style={{ marginTop: '100px', padding: '20px', boxSizing: 'border-box' }}
-    >
-      <SearchBar placeholder="검색어를 입력하세요." />
-      <MenuGrid />
+    <Layout>
+      <div className="main-page" style={{ marginTop: '50px', padding: '20px' }}>
+        <SearchBar placeholder="검색어를 입력하세요." />
+        <MenuGrid />
 
-      <h2 style={{ fontSize: '14px', margin: '24px 0 12px', fontWeight: 'bold' }}>
-        오늘의 지역정보
-      </h2>
+        <h2 style={{ fontSize: '14px', margin: '24px 0 12px', fontWeight: 'bold' }}>
+          오늘의 지역정보
+        </h2>
 
-      <div style={styles.cardGrid}>
-        {volunteerList.map((item, index) => (
-          <VolunteerCard key={index} {...item} />
-        ))}
+        <div style={styles.cardGrid}>
+          {volunteerList.map((item, index) => (
+            <VolunteerCard key={index} {...item} />
+          ))}
+        </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 

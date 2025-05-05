@@ -1,18 +1,12 @@
 import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
+import BottomNavigation from './components/BottomNavigation/BottomNavigation';
 import { Outlet } from 'react-router-dom';
 
 import './App.css';
 import './styles/global.css';
 
 function App() {
-  return (
-    <>
-      <Header />
-      <Outlet />
-      <Footer />
-    </>
-  );
+  return <Outlet />;
 }
 
 export default App;

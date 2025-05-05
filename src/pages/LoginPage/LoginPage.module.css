@@ -1,95 +1,90 @@
 .loginframe {
-    display: flex;
-    flex-direction: column;
-    width: 337px;
-    top: 100px;
-    align-items: center;
-    gap: 30px;
-    position: relative;
+  display: flex;
+  flex-direction: column;
+  top: 100px;
+  align-items: center;
+  gap: 30px;
+  position: relative;
 }
 
 .loginframe .logintextlogin {
-    position: relative;
-    align-self: stretch;
-    height: 52px;
-    color: #3b82f6;
-    font-size: 26px;
-    font-weight: 700;
-    text-align: center;
-    letter-spacing: 0;
-    line-height: normal;
+  position: relative;
+  align-self: stretch;
+  height: 52px;
+  color: #3b82f6;
+  font-size: 26px;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: normal;
 }
 
 .loginframe .logininputid {
-    position: relative;
-    width: 300px;
-    height: 60px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    font-weight: 500;
-    border: 1px solid;
-    border-color: #d9d9d9;
-    color:#d9d9d9;
+  position: relative;
+  width: 300px;
+  height: 60px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  font-weight: 500;
+  border: 1px solid;
+  border-color: #d9d9d9;
+  color: #d9d9d9;
 }
 
 .loginframe .logininputpw {
-    position: relative;
-    width: 300px;
-    height: 60px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    font-weight: 500;
-    border: 1px solid;
-    border-color: #d9d9d9;
-    color:#d9d9d9;
+  position: relative;
+  width: 300px;
+  height: 60px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  font-weight: 500;
+  border: 1px solid;
+  border-color: #d9d9d9;
+  color: #d9d9d9;
 }
 
 .loginframe .logindivwrapper {
-    position: relative;
-    width: 302px;
-    height: 31.21px;
+  position: relative;
+  width: 302px;
+  height: 31.21px;
 }
 
 .loginframe .loginoverlapgroup {
-    height: 32px;
-    top: -1px;
-    position: relative;
-    width: 300px;
+  height: 32px;
+  top: -1px;
+  position: relative;
+  width: 300px;
 }
 
 .loginframe .loginline {
-    top: 0;
-    position: absolute;
-    width: 300px;
-    height: 2px;
-    left: 0;
-    object-fit: cover;
+  top: 0;
+  position: absolute;
+  width: 300px;
+  height: 2px;
+  left: 0;
+  object-fit: cover;
 }
 
 .loginframe .loginline2 {
-    top: 30px;
-    position: absolute;
-    width: 300px;
-    height: 2px;
-    left: 0;
-    object-fit: cover;
+  top: 30px;
+  position: absolute;
+  width: 300px;
+  height: 2px;
+  left: 0;
+  object-fit: cover;
 }
 
 .loginframe .loginp {
-    position: absolute;
-    width: 200px;
-    height: 30px;
-    top: 1px;
-    left: 50px;
-    color: #d9d9d9;
-    font-size: 14px;
-    font-weight: 700;
-    text-align: center;
-    letter-spacing: 0;
-    line-height: normal;
-    margin-top: 5px;
+  position: absolute;
+  width: 200px;
+  height: 30px;
+  top: 1px;
+  left: 50px;
+  color: #d9d9d9;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: 5px;
 }
-
-
-
-
