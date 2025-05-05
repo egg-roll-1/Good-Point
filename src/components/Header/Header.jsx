@@ -9,7 +9,7 @@ const Header = ({ back, children }) => {
     <header className={styles.header}>
       <HStack between>
         <HStack gap={3}>
-          {back && <ArrowLeft style={{ color: 'var(--primary-fg)' }} />}
+          {back && <ArrowLeft style={{ color: 'var(--goodpoint-fg)' }} />}
           <Logo />
         </HStack>
         <div>{children}</div>

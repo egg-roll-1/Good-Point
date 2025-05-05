@@ -10,11 +10,11 @@
   --breakpoint-desktop: 1024px;
 
   /* spacing */
-  --space-xs: 0.1rem;
-  --space-sm: 0.25rem;
-  --space-md: 0.5rem;
-  --space-lg: 0.75rem;
-  --space-xl: 0.1rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.25rem;
+  --space-xl: 1.5rem;
 
   /* fonts */
   --font-xs: 0.75rem;
@@ -24,7 +24,10 @@
   --font-lg: 1.25rem;
 
   /* colors */
-  --primary-fg: #3b82f6;
+  --goodpoint-fg: #3b82f6;
+
+  --primary-fg: black;
+  --primary-bg: #fff;
 }
 
 html {
@@ -43,6 +46,10 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+button {
+  cursor: pointer;
 }
 
 .shadow-xs {

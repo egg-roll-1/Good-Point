@@ -4,9 +4,10 @@
   left: 50%;
   transform: translateX(-50%);
   max-width: var(--breakpoint-xs);
-  padding: var(--space-md);
+  padding: var(--space-xs);
   width: 100%;
   border-top: 1px solid #eeeeee;
+  background: var(--primary-bg);
 }
 
 .footericon {

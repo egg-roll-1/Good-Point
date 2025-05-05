@@ -3,6 +3,7 @@ import { Layout } from '../components/Layout/Layout.jsx';
 import MenuGrid from '../components/MenuGrid/MenuGrid.jsx';
 import SearchBar from '../components/SearchBar/SearchBar.jsx';
 import VolunteerCard from '../components/VolunteerCard/VolunteerCard.jsx';
+import { SpacingY } from '../components/Spacing/Spacing.js';
 
 const volunteerList = [
   {
@@ -39,6 +40,7 @@ const Main = () => {
     <Layout>
       <div className="main-page" style={{ marginTop: '50px', padding: '20px' }}>
         <SearchBar placeholder="검색어를 입력하세요." />
+        <SpacingY />
         <MenuGrid />
 
         <h2 style={{ fontSize: '14px', margin: '24px 0 12px', fontWeight: 'bold' }}>
