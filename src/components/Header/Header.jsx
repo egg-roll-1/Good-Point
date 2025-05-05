@@ -4,6 +4,14 @@ import { Logo } from '../Logo/Logo';
 import { HStack } from '../Stack/HStack';
 import styles from './Header.module.css';
 
+/**
+ * @typedef {Object} Props
+ * @property {boolean} back
+ * @property {object} children
+ *
+ * @param {Props}
+ * @returns
+ */
 const Header = ({ back, children }) => {
   return (
     <header className={styles.header}>
