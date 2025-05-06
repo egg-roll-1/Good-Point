@@ -1,9 +1,9 @@
 import { authAxios } from '../../auth/config/axios';
-import * as Types from './model';
+import * as Model from './model';
 
 /**
  * 봉사활동 신청내역을 가져옵니다.
- * @returns {Promise<Types.VolunteerRequest[]>}
+ * @returns {Promise<Model.VolunteerRequest[]>}
  */
 export const getVolunteerRequestList = async () => {
   const { data } = await authAxios.get('/volunteer-request');

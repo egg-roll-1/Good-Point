@@ -3,6 +3,8 @@ import styles from './LoginPage.module.css';
 
 import Line from '../../assets/Line.png';
 import { Layout } from '../../components/Layout/Layout';
+import { Link } from 'react-router-dom';
+import routes from '../../constants/routes';
 
 const LoginPage = () => {
   return (
@@ -19,7 +21,9 @@ const LoginPage = () => {
             <p className={styles.loginp}>아이디 찾기 | 비밀번호 찾기</p>
           </div>
         </div>
-        <Button text={'회원가입'} type={'brightLogin'} />
+        <Link to={routes.signup}>
+          <Button text={'회원가입'} type={'brightLogin'} />
+        </Link>
       </div>
     </Layout>
   );

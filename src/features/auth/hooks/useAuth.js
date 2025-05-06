@@ -2,7 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import { useLocation, useNavigate } from 'react-router-dom';
 import routes from '../../../constants/routes';
 import { signIn } from '../api/api';
-import { LoginResponse } from '../api/model';
+import * as Model from '../api/model';
 
 const rememberKey = 'GP:REMEMBER';
 const accessTokenKey = 'GP:ACCESS';
@@ -10,7 +10,7 @@ const accessTokenExpireKey = 'GP:ACCESS:EXPIRE';
 
 /**
  * 로그인 이후 처리를 수행합니다.
- * @param {LoginResponse} response
+ * @param {Model.LoginResponse} response
  * @returns
  */
 const afterLoginAction = (response) => {
@@ -54,6 +54,11 @@ export const useLogin = () => {
   });
 };
 
+/**
+ * 로그인이 필요한 페이지에 대해 보호합니다.
+ * @param {boolean} redirect 로그인이 되어있지 않은 경우, 로그인 페이지로 이동시킬지 여부.
+ * @returns 로그인이 되어있다면 true, 아니라면 false
+ */
 export const useAuthGuard = (redirect = true) => {
   const navigate = useNavigate();
   const location = useLocation();

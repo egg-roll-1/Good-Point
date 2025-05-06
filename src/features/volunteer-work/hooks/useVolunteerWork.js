@@ -1,20 +1,22 @@
 import { useQuery } from '@tanstack/react-query';
 import {
   getVolunteerWorkDetail,
-  GetVolunteerWorkDetailRequest,
   getVolunteerWorkList,
-  GetVolunteerWorkRequest,
+  getVolunteerWorkListByGeometry,
 } from '../api/api';
+
+import * as Model from '../api/api';
 
 export const volunteerWorkKeys = {
   all: ['volunteer-work'],
   list: (request) => [...volunteerWorkKeys.all, 'list', request],
+  geometry: (request) => [...volunteerWorkKeys.all, 'geometry', request],
   detail: (request) => [...volunteerWorkKeys.all, 'detail', request],
 };
 
 /**
  * 봉사활동 목록 데이터를 가져옵니다.
- * @param {GetVolunteerWorkRequest} request
+ * @param {Model.GetVolunteerWorkRequest} request
  */
 export const useVolunteerWork = (request) => {
   return useQuery({
@@ -24,8 +26,19 @@ export const useVolunteerWork = (request) => {
 };
 
 /**
+ * 위치기반으로 봉사활동 목록 데이터를 가져옵니다.
+ * @param {Model.GetVolunteerWorkListByGeometry} request
+ */
+export const useVolunteerWorkByGeometry = (request) => {
+  return useQuery({
+    queryKey: volunteerWorkKeys.geometry(request),
+    queryFn: () => getVolunteerWorkListByGeometry(request),
+  });
+};
+
+/**
  * 봉사활동 상세 데이터를 가져옵니다.
- * @param {GetVolunteerWorkDetailRequest} request
+ * @param {Model.GetVolunteerWorkDetailRequest} request
  */
 export const useVolunteerWorkDetail = (request) => {
   return useQuery({

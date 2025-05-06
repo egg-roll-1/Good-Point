@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import SearchBar from '../../components/SearchBar/SearchBar.jsx';
-import PageNum from '../../components/PageNum/PageNum.jsx';
-import styles from './FAQ.module.css';
 import { Layout } from '../../components/Layout/Layout.jsx';
+import PageNum from '../../components/PageNum/PageNum.jsx';
+import SearchBar from '../../components/SearchBar/SearchBar.jsx';
+import React, { useState } from 'react';
+import styles from './FAQ.module.css';
 
 const faqData = [
   '비밀번호를 여러번 틀려서 계정이 잠겼는데요. 어떻게 풀 수 있나요?',

@@ -12,4 +12,5 @@
  * @property {boolean} hasPrevious - 이전 페이지 존재 여부
  * @property {T[]} content - 데이터 배열
  */
+
 export const Types = {};

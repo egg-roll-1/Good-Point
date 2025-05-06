@@ -3,7 +3,7 @@
   left: 0;
   top: 0;
   width: 100%;
-  padding: var(--space-md) var(--space-md);
+  padding: var(--space-md) var(--space-sm);
   justify-content: center;
   font-size: var(--font-lg);
   background: var(--primary-bg);

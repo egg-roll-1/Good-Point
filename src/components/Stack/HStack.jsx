@@ -6,14 +6,13 @@ import styles from './Stack.module.css';
  * @param {*} param0
  * @returns
  */
-export const HStack = ({ children, between, center, around, gap }) => {
-  const justifyContent = between
-    ? 'space-between'
-    : center
-      ? 'center'
-      : around
-        ? 'space-around'
-        : undefined;
+export const HStack = ({ children, between, center, around, end, gap }) => {
+  const justifyContent =
+    (between && 'space-between') ??
+    (center && 'center') ??
+    (around && 'space-around') ??
+    (end && 'end') ??
+    undefined;
 
   return (
     <div
@@ -33,5 +32,6 @@ HStack.propTypes = {
   between: PropTypes.bool,
   center: PropTypes.bool,
   around: PropTypes.bool,
+  end: PropTypes.bool,
   gap: PropTypes.number,
 };

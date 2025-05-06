@@ -20,7 +20,7 @@ const Header = ({ back, children }) => {
           {back && <ArrowLeft style={{ color: 'var(--goodpoint-fg)' }} />}
           <Logo />
         </HStack>
-        <div>{children}</div>
+        <div style={{ width: '100%' }}>{children}</div>
       </HStack>
     </header>
   );

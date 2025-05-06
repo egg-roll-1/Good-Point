@@ -6,6 +6,7 @@ import styles from './VolunteerMap.module.css';
 
 import Group33910 from '../../assets/Group 33910.png';
 import { Layout } from '../../components/Layout/Layout';
+import { useVolunteerWorkByGeometry } from '../../features/volunteer-work/hooks/useVolunteerWork';
 
 const VolunteerMap = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -19,6 +20,11 @@ const VolunteerMap = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
   const [searchKeyword, setSearchKeyword] = useState('');
+
+  const { data, isLoading: isDataLoading } = useVolunteerWorkByGeometry({
+    latitude: currentPosition.lat,
+    longitude: currentPosition.lng,
+  });
 
   // 스와이프 핸들러 설정
   const swipeHandlers = useSwipeable({

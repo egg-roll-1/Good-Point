@@ -1,5 +1,5 @@
 import { publicAxios } from '../../auth/config/axios';
-import { LoginResponse } from './model';
+import * as Model from './model';
 
 /**
  * 회원가입 요청
@@ -11,7 +11,7 @@ import { LoginResponse } from './model';
  * @property {'M' | 'F'} gender
  *
  * @param {SignUpRequest}
- * @returns {Promise<LoginResponse>}
+ * @returns {Promise<Model.LoginResponse>}
  */
 export const signUp = async (request) => {
   const { data } = await publicAxios.post('/auth/signup', request);
@@ -25,7 +25,7 @@ export const signUp = async (request) => {
  * @property {string} password
  *
  * @param {SignInRequest}
- * @returns {Promise<LoginResponse>}
+ * @returns {Promise<Model.LoginResponse>}
  */
 export const signIn = async (request) => {
   const { data } = await publicAxios.post('/auth/login', request);
