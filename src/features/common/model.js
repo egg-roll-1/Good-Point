@@ -10,5 +10,6 @@
  * @property {boolean} isLast - 마지막 페이지 여부
  * @property {boolean} hasNext - 다음 페이지 존재 여부
  * @property {boolean} hasPrevious - 이전 페이지 존재 여부
- * @property {T[]} data - 데이터 배열
+ * @property {T[]} content - 데이터 배열
  */
+export const Types = {};

@@ -1,10 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useSwipeable } from 'react-swipeable'; // 먼저 'npm install react-swipeable' 실행 필요
-import VolList from '../../components/VolList/VolList';
+import { useSwipeable } from 'react-swipeable';
 import PageNum from '../../components/PageNum/PageNum';
+import VolList from '../../components/VolList/VolList';
 import styles from './VolunteerMap.module.css';
 
-import Line from '../../assets/Line.png';
 import Group33910 from '../../assets/Group 33910.png';
 import { Layout } from '../../components/Layout/Layout';
 
