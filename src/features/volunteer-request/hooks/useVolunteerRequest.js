@@ -1,29 +1,23 @@
-import { useMutation, useQuery, useQueryClient, UseQueryResult } from '@tanstack/react-query';
-import { cancelVolunteerRequest, getVolunteerWorkList } from '../api/api';
-import { VolunteerRequest } from '../api/model';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { cancelVolunteerRequest, getVolunteerRequestList } from '../api/api';
 
-/**
- * 봉사신청내역 키
- */
 export const volunteerRequestKeys = {
   all: ['volunteer-request'],
   list: () => [...volunteerRequestKeys.all, 'list'],
 };
 
 /**
- * 봉사활동 신청내역 데이터를 가져옵니다.
- * @returns {UseQueryResult<VolunteerRequest[]>}
+ * 봉사신청내역을 조회합니다.
  */
-export const useVolunteerRequest = (request) => {
+export const useVolunteerRequest = () => {
   return useQuery({
-    queryKey: volunteerRequestKeys.list(request),
-    queryFn: () => getVolunteerWorkList(request),
+    queryKey: volunteerRequestKeys.list(),
+    queryFn: () => getVolunteerRequestList(),
   });
 };
 
 /**
  * 봉사활동을 취소합니다.
- * @returns {UseMutationResult}
  */
 export const useVolunteerWorkCancel = () => {
   const queryClient = useQueryClient();
