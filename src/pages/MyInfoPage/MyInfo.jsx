@@ -2,8 +2,11 @@
 import React from 'react';
 import styles from './MyInfo.module.css';
 import { Layout } from '../../components/Layout/Layout';
+import { useAuthGuard } from '../../features/auth/hooks/useAuth';
 
 const MyInfo = (id, address, email, phone, area, signupDate) => {
+  const auth = useAuthGuard(true);
+
   const infoData = [
     {
       id: { id },

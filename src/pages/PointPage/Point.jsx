@@ -3,8 +3,11 @@ import PointGauge from '../../components/PointGauge/PointGauge.jsx';
 import shibaImage from '../../assets/Shiba Inu Dog Lying Down.png';
 import styles from './Point.module.css';
 import { Layout } from '../../components/Layout/Layout.jsx';
+import { useAuthGuard } from '../../features/auth/hooks/useAuth.js';
 
 const Point = () => {
+  useAuthGuard();
+
   const point = 123456789;
   const maxPoint = 200000000;
   const percent = Math.min((point / maxPoint) * 100, 100);
