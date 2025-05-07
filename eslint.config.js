@@ -26,12 +26,5 @@ export default [
       'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
     },
-    paths: {
-      '@components': ['./src/components'],
-      '@pages': ['./src/pages'],
-      '@features': ['./src/features'],
-      '@styles': ['./src/styles'],
-      '@/*': ['./src/*'],
-    },
   },
 ];
