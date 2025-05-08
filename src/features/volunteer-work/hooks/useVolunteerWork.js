@@ -5,7 +5,7 @@ import {
   getVolunteerWorkListByGeometry,
 } from '../api/api';
 
-import * as Model from '../api/api';
+import * as RequestModel from '../api/api';
 
 export const volunteerWorkKeys = {
   all: ['volunteer-work'],
@@ -16,7 +16,7 @@ export const volunteerWorkKeys = {
 
 /**
  * 봉사활동 목록 데이터를 가져옵니다.
- * @param {Model.GetVolunteerWorkRequest} request
+ * @param {RequestModel.GetVolunteerWorkRequest} request
  */
 export const useVolunteerWork = (request) => {
   return useQuery({
@@ -27,7 +27,7 @@ export const useVolunteerWork = (request) => {
 
 /**
  * 위치기반으로 봉사활동 목록 데이터를 가져옵니다.
- * @param {Model.GetVolunteerWorkListByGeometry} request
+ * @param {RequestModel.GetVolunteerWorkRequestByGeometry} request
  */
 export const useVolunteerWorkByGeometry = (request) => {
   return useQuery({
@@ -38,7 +38,7 @@ export const useVolunteerWorkByGeometry = (request) => {
 
 /**
  * 봉사활동 상세 데이터를 가져옵니다.
- * @param {Model.GetVolunteerWorkDetailRequest} request
+ * @param {RequestModel.GetVolunteerWorkDetailRequest} request
  */
 export const useVolunteerWorkDetail = (request) => {
   return useQuery({
