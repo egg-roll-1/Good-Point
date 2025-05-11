@@ -18,7 +18,7 @@ export const getVolunteerWorkList = async (request) => {
     },
   });
 
-  return data.result;
+  return data.result.content;
 };
 
 /**
