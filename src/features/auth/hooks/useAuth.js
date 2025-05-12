@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { useLocation, useNavigate } from 'react-router-dom';
 import routes from '../../../constants/routes';
-import { signIn } from '../api/api';
+import { signIn, signUp } from '../api/api';
 import { LoginResponse } from '../api/model';
 
 const rememberKey = 'GP:REMEMBER';
@@ -31,7 +31,7 @@ export const useSignUp = () => {
   const navigate = useNavigate();
 
   return useMutation({
-    mutationFn: signIn,
+    mutationFn: signUp,
     onSuccess: (response) => {
       const to = afterLoginAction(response);
       navigate(to, { replace: true });
