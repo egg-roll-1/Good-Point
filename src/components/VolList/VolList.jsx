@@ -16,6 +16,9 @@ const VolList = () => {
     keyword: '', // 검색어가 있다면 여기에 추가
   });
 
+  const items = data?.content || [];
+  const totalElements = data?.totalElements || 0;
+
   const handleItemClick = (item) => {
     // 상세 페이지로 이동하면서 ID 전달
     navigate(`/voldetail/${item.id}`);
@@ -67,7 +70,7 @@ const VolList = () => {
     return (
       <div>
       <div className={styles.vllist}>
-        {data && data.map((item) => (
+        {items && items.map((item) => (
           <div
             className={styles.vlitem}
             key={item.id}
@@ -93,11 +96,11 @@ const VolList = () => {
       </div>
       
       {/* 페이지네이션 */}
-      {data && data.length > 0 && (
+      {items && items.length > 0 && (
         <PageNum
           currentPage={page}
           onPageChange={setPage}
-          totalItems={100} // 실제 총 아이템 수로 변경 필요
+          totalItems={totalElements} // 실제 총 아이템 수로 변경 필요
           pageSize={pageSize}
         />
       )}

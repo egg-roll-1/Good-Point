@@ -18,11 +18,32 @@ export const volunteerWorkKeys = {
  * 봉사활동 목록 데이터를 가져옵니다.
  * @param {RequestModel.GetVolunteerWorkRequest} request
  */
+// export const useVolunteerWork = (request) => {
+//   return useQuery({
+//     queryKey: volunteerWorkKeys.list(request),
+//     queryFn: () => getVolunteerWorkList(request),
+//   });
+// };
+
 export const useVolunteerWork = (request) => {
-  return useQuery({
+  const query = useQuery({
     queryKey: volunteerWorkKeys.list(request),
     queryFn: () => getVolunteerWorkList(request),
+    select: (data) => {
+      // data는 전체 result 객체
+      return {
+        content: data?.content || [],
+        totalElements: data?.totalElements,
+        totalPages: data?.totalPages,
+        number: data?.number,
+        size: data?.size,
+        isFirst: data?.isFirst,
+        isLast: data?.isLast,
+      };
+    },
   });
+
+  return query;
 };
 
 /**
