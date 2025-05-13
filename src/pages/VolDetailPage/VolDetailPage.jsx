@@ -34,15 +34,22 @@ const VolDetailPage = () => {
   const getCategoryFromTags = (tagList) => {
     if (!tagList || tagList.length === 0) return '기타';
     
-    const firstTag = tagList[0].title;
+    // 태그 목록에서 카테고리 태그 찾기
+    const categoryTags = ['생활편의', '보건의료', '재난재해', '환경보호', '교육지도'];
+    const foundTag = tagList.find(tag => categoryTags.includes(tag.title));
     
+    if (!foundTag) return '기타';
+    
+    // 카테고리 매핑
     const categoryMap = {
       '보건의료': '보건',
       '생활편의': '생활',
       '재난재해': '재난',
+      '환경보호': '환경',
+      '교육지도': '교육',
     };
     
-    return categoryMap[firstTag] || firstTag;
+    return categoryMap[foundTag.title] || foundTag.title;
   };
 
   // 봉사 신청 핸들러
@@ -88,13 +95,13 @@ const VolDetailPage = () => {
     <Layout>
       <div className={styles.voldetailcontainer}>
         <div className={styles.voldetailheader}>
-          <div className={`${styles.volcategory} ${styles[category.toLowerCase()]}`}>
+         <div className={`${styles.volcategory} ${styles[category]}`}>
             {category}
           </div>
           <div className={styles.voldetailtitle}>{data.title}</div>
         </div>
         <div className={styles.voldetaildate}>
-          작성일: {formatDate(data.startDate)}
+          등록일: {formatDate(data.startDate)}
         </div>
         <div className={styles.voldetailinfo}>
           <div className={styles.voldetailitem}>
