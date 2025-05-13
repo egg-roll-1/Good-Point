@@ -1,98 +1,61 @@
 .faqpage {
-    max-width: 393px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: 'Noto Sans KR', sans-serif;
-  }
-  
-  .faqtitle {
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 20px;
-    color: #1e1e1e;
-  }
-  
-  /* 서치바 스타일 */
-  .searchbar {
-    display: flex;
-    align-items: center;
-    border: 2px solid #5c6df8;
-    border-radius: 32px;
-    padding: 12px 16px;
-    margin-bottom: 24px;
-    background: #fff;
-  }
-  
-  .searchimg {
-    width: 18px;
-    height: 18px;
-    margin-right: 10px;
-    opacity: 0.5;
-  }
-  
-  .searchinput {
-    flex: 1;
-    border: none;
-    font-size: 14px;
-    outline: none;
-  }
-  
-  /* 질문 항목 */
-  .faqlist {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-  
-  .faqitem {
-    font-size: 14px;
-    padding: 12px;
-    border-bottom: 1px solid #eee;
-    line-height: 1.6;
-    display: flex;
-    gap: 8px;
-  }
-  
-  .faqq {
-    color: #5c6df8;
-    font-weight: bold;
-    font-size: 16px;
-  }
-  
-  /* 페이지네이션
-  .page-num-wrapper {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 28px;
-  }
-  
-  .page-button {
-    background-color: #fff;
-    border: 1px solid #cfcfcf;
-    border-radius: 6px;
-    padding: 6px 12px;
-    font-size: 14px;
-    cursor: pointer;
-    transition: 0.2s;
-  }
-  
-  .page-button:hover {
-    background-color: #f0f0f0;
-  }
-  
-  .page-button.active {
-    background-color: #5c6df8;
-    color: white;
-    font-weight: bold;
-    border: none;
-  }
-  
-  .arrow-button {
-    background: none;
-    border: none;
-    font-size: 18px;
-    cursor: pointer;
-  }
-   */
+  max-width: 393px;
+  margin: 0 auto;
+  padding: 24px 20px 80px;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.faqtitle {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.faqlist {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.faqitem {
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.faqitem:hover {
+  background-color: #f9f9f9;
+  transform: scale(1.01);
+}
+
+.faqitem.active {
+  background-color: #f0f0f0;
+}
+
+.question {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.qmark {
+  color: #3b82f6;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.questionText {
+  color: #222;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.answer {
+  margin-top: 10px;
+  padding-left: 28px;
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+}

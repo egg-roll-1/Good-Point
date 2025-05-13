@@ -1,6 +1,6 @@
 import { buttonStyles } from './Button.style';
 
-const Button = ({ text, type, onClick }) => {
+const Button = ({ text, type, onClick, disabled }) => {
   //버튼 타입별로 스타일 결정
   const getButtonStyle = () => {
     switch (type) {
@@ -18,7 +18,7 @@ const Button = ({ text, type, onClick }) => {
   };
 
   return (
-    <button style={getButtonStyle()} onClick={onClick}>
+    <button style={getButtonStyle()} onClick={onClick} disabled={disabled}>
       {text}
     </button>
   );
