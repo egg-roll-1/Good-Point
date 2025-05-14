@@ -1,17 +1,16 @@
 import { useMutation } from '@tanstack/react-query';
 import { useLocation, useNavigate } from 'react-router-dom';
 import routes from '../../../constants/routes';
-import { signIn } from '../api/api';
-import * as Model from '../api/model';
-import { useEffect } from 'react';
+import { signIn, signUp } from '../api/api';
+/** import { LoginResponse } from '../api/model'; **/
 
-const rememberKey = 'GP:REMEMBER';
+export const rememberKey = 'GP:REMEMBER';
 export const accessTokenKey = 'GP:ACCESS';
-const accessTokenExpireKey = 'GP:ACCESS:EXPIRE';
+export const accessTokenExpireKey = 'GP:ACCESS:EXPIRE';
 
 /**
  * 로그인 이후 처리를 수행합니다.
- * @param {Model.LoginResponse} response
+ * @param {LoginResponse} response
  * @returns
  */
 const afterLoginAction = (response) => {
@@ -32,7 +31,7 @@ export const useSignUp = () => {
   const navigate = useNavigate();
 
   return useMutation({
-    mutationFn: signIn,
+    mutationFn: signUp,
     onSuccess: (response) => {
       const to = afterLoginAction(response);
       navigate(to, { replace: true });
@@ -55,11 +54,6 @@ export const useLogin = () => {
   });
 };
 
-/**
- * 로그인이 필요한 페이지에 대해 보호합니다.
- * @param {boolean} redirect 로그인이 되어있지 않은 경우, 로그인 페이지로 이동시킬지 여부. 기본값은 true.
- * @returns 로그인이 되어있다면 true, 아니라면 false
- */
 export const useAuthGuard = (redirect = true) => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -67,29 +61,20 @@ export const useAuthGuard = (redirect = true) => {
   const accessToken = localStorage.getItem(accessTokenKey);
   const expiredAt = localStorage.getItem(accessTokenExpireKey);
 
-  const doRedirect = async () => {
+  const doRedirect = () => {
     // 현재 위치를 기억합니다.
     localStorage.setItem(rememberKey, location.pathname);
 
     // 로그인으로 이동시킵니다.
-    await navigate(routes.login);
+    navigate(routes.login);
   };
-
-  useEffect(() => {
-    if (!redirect) return;
-
-    (async () => {
-      // 세션이 없는 경우, 로그인 화면으로 이동시킵니다.
-      if (!accessToken || !expiredAt || new Date(expiredAt) <= new Date()) {
-        if (redirect) {
-          await doRedirect();
-        }
-      }
-    })();
-  }, []);
 
   // 세션이 없는 경우, 로그인 화면으로 이동시킵니다.
   if (!accessToken || !expiredAt || new Date(expiredAt) <= new Date()) {
+    if (redirect) {
+      doRedirect();
+    }
+
     return false;
   }
 

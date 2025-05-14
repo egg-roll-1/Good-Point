@@ -1,99 +1,126 @@
 .signupframe {
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 100px;
-    align-items: center;
-    gap: 20px;
-    position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 40px 20px 60px;
+  box-sizing: border-box;
+  min-height: 100vh;
+  overflow-y: auto;
 }
 
-/*공통 placeholder 글자색 변경경*/
-.signupframe ::placeholder {
-    color: #d9d9d9; 
-    opacity: 1;
+.signuptext {
+  font-weight: 700;
+  font-size: 26px;
+  color: #3b82f6;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.signupgroup {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.signuplabel {
+  font-size: 13px;
+  color: #3b82f6;
+  margin-left: 4px;
+}
+
+.signupnickname {
+  width: 100%;
+  height: 56px;
+  border-radius: 10px;
+  border: 1px solid #d9d9d9;
+  padding: 0 12px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+  box-sizing: border-box;
+}
+
+.signupnickname::placeholder {
+  color: #888;
+}
+
+/* 성별 스위치 */
+.signupgender {
+  display: flex;
+  gap: 16px;
+}
+
+.signupgender input[type='radio'] {
+  display: none;
+}
+
+.signupgender label {
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  font-size: 14px;
+  user-select: none;
+}
+
+.signupgender input[type='radio']:checked + label {
+  background-color: #3b82f6;
+  color: #fff;
+  border: none;
+}
+
+.signupcheckbox {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+@media (min-width: 768px) {
+  .signupframe {
+    max-width: 600px;
+    padding: 60px 40px;
   }
 
-.signupframe .signuptext {
-    position: relative;
-    align-self: stretch;
-    height: 52px;
-    margin-top: -1.00px; 
-    font-weight: 700;
-    font-size: 26px;
-    color: #3b82f6;
-    text-align: center;
-    letter-spacing: 0;
-    line-height: normal;
-}
+  .signuptext {
+    font-size: 32px;
+  }
 
-.signupframe .signupgroup {
-    position: relative;
-    width: 300px;
+  .signupnickname {
     height: 60px;
-    display: flex;
+    font-size: 16px;
+  }
+
+  .signupgender label {
+    font-size: 15px;
+    padding: 12px 24px;
+  }
 }
 
-.signupframe .signupnickname {
-    position: relative;
-    width: 200px;
-    height: 60px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    border: 1px solid;
-    border-color: #d9d9d9;
-    font-weight: 500;
-    color: #d9d9d9;
-}
+@media (min-width: 1024px) {
+  .signupframe {
+    max-width: 640px;
+    padding: 80px 60px;
+  }
 
-.signupframe .signupcheckbtn {
-    position: absolute;
-    left: 210px;
-}
+  .signuptext {
+    font-size: 36px;
+  }
 
-.signupframe .signupid {
-    position: relative;
-    width: 200px;
-    height: 60px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    border: 1px solid;
-    border-color: #d9d9d9;
-    font-weight: 500;
-    color: #d9d9d9;
-}
+  .signupnickname {
+    height: 64px;
+    font-size: 17px;
+  }
 
-.signupframe .signuppw {
-    position: relative;
-    width: 300px;
-    height: 60px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    border: 1px solid;
-    border-color: #d9d9d9;
-    font-weight: 500;
-    color: #d9d9d9;
-}
-
-
-.signupframe .signupcheckpw {
-    position: relative;
-    width: 300px;
-    height: 60px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    border: 1px solid;
-    border-color: #d9d9d9;
-    font-weight: 500;
-    color: #d9d9d9;
-}
-
-
-
-.signupframe .signupcheckbox {
-    font-size: 14px;
-    white-space: nowrap;
-    color: #d9d9d9;
+  .signupgender label {
+    font-size: 16px;
+    padding: 14px 28px;
+  }
 }
