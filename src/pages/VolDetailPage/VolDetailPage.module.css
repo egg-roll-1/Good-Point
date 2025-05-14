@@ -3,43 +3,52 @@
     max-width: 700px;
     margin: 0 auto;
     padding: 24px 20px;
-    font-family: 'Noto Sans KR', sans-serif;
     background-color: #fff;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
   
   .voldetailheader {
     display: flex;
-    margin-top: 47px;
+
     align-items: center;
   }
   
-  .volcategory {
-    width: 55px;
-    height: 55px;
-    border-radius: 50%;
-    color: white;
-    font-weight: bold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 16px;
-    margin-bottom: 16px;
-  }
-  
-  /* 카테고리 색상 */
-  .volcategory.보건 {
-    background-color: #42C7C6;
-  }
-  
-  .volcategory.생활 {
-    background-color: #FFA52D;
-  }
-  
-  .volcategory.재난 {
-    background-color: #FF6B6B;
-  }
+.volcategory {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  margin-bottom: 16px;
+}
+
+/* 카테고리 색상 */
+.보건 {
+  background-color: #42C7C6;
+}
+
+.생활 {
+  background-color: #FFA52D;
+}
+
+.재난 {
+  background-color: #FF6B6B;
+}
+
+.환경 {
+  background-color: #2EC4B6; /* 환경 카테고리 색상 추가 */
+}
+
+.교육 {
+  background-color: #7209B7; /* 교육 카테고리 색상 추가 */
+}
+
+.기타 {
+  background-color: #AD20AB;
+}
   
   .voldetailtitle {
     font-size: 14px;
@@ -47,6 +56,11 @@
     color: #333333;
     margin-left: 10px;
     margin-bottom: 15px;
+    white-space: nowrap;        /* 텍스트가 줄바꿈되지 않도록 설정 */
+    overflow: hidden;           /* 넘치는 텍스트 숨기기 */
+    text-overflow: ellipsis;    /* 넘치는 텍스트를 말줄임표로 표시 */
+    max-width: 100%;            /* 부모 요소의 최대 너비를 넘지 않도록 설정 */
+    display: block;             /* 블록 요소로 설정하여 너비를 차지하도록 함 */ 
   }
   
   .voldetaildate {
@@ -128,6 +142,7 @@
       height: 60px;
       font-size: 14px;
     }
+    
   }
   
   /* 상단에 헤더가 있는 경우를 위한 여백 */
@@ -139,7 +154,11 @@
   }
 
 .voldetailbutton {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 30px;      /* 상단 여백 추가 */
+  margin-bottom: 80px;   /* 바텀 네비게이션을 위한 충분한 여백 */
+  position: relative;    /* 위치 지정 */
 }
+

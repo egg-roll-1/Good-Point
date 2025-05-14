@@ -58,7 +58,7 @@ const router = createBrowserRouter([
         element: <VolunteerMap />,
       },
       {
-        path: routes.voldetail,
+        path: '/voldetail/:id',
         element: <VolDetailPage />,
       },
     ],
