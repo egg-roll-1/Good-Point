@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useSwipeable } from 'react-swipeable';
-import PageNum from '../../components/PageNum/PageNum';
 import VolList from '../../components/VolList/VolList';
 import styles from './VolunteerMap.module.css';
 
@@ -194,11 +193,6 @@ const VolunteerMap = () => {
               <div className={styles.bottomsheetcontent}>
                 <div className={styles.volunteertitletext}>지역 봉사</div>
                 <VolList />
-                <PageNum
-                  currentPage={currentPage}
-                  totalPages={5}
-                  onPageChange={(page) => setCurrentPage(page)}
-                />
               </div>
             )}
           </div>

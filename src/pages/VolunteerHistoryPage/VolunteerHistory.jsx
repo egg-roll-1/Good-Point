@@ -15,7 +15,7 @@ const VolunteerHistory = () => {
 
         <SearchBar placeholder="무엇이든 찾아보세요" />
 
-        <VolList />
+        <VolList /> {/*여기 수정해야 됨 */}
         <PageNum
           currentPage={currentPage}
           totalPages={5}

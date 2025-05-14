@@ -1,4 +1,4 @@
-import { publicAxios } from '../../auth/config/axios';
+import { publicAxios } from '../config/axios';
 import * as Model from './model';
 
 /**

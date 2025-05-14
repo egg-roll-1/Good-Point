@@ -8,7 +8,7 @@ const routes = {
   faq: '/faq',
   history: '/history',
   volmap: '/volmap',
-  voldetail: '/voldetail',
+  voldetail: '/voldetail/:id', // id 파라미터 추가
 };
 
 export default routes;
