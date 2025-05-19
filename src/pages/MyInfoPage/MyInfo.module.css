@@ -1,40 +1,65 @@
 .myinfopage {
-    max-width: 393px;
-    margin: 0 auto;
-    padding: 24px 20px 80px;
-    font-family: 'Noto Sans KR', sans-serif;
-  }
-  
-  .myinfotitle {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 24px;
-  }
-  
-  .myinfolist {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 32px;
-  }
-  
-  .myinfolist li {
-    font-size: 16px;
-    margin-bottom: 16px;
-  }
-  
-  .myinfobuttons {
-    display: flex;
-    justify-content: center;
-    gap: 16px;
-  }
-  
-  .myinfobuttons button {
-    background-color: #2F6FFF;
-    color: white;
-    border: none;
-    border-radius: 12px;
-    padding: 10px 16px;
-    font-size: 14px;
-    cursor: pointer;
-  }
-  
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 32px 16px 16px 16px;
+}
+
+.myinfotitle {
+  font-size: 24px;
+  color: #3b82f6;
+  font-weight: 700;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.myinfolist {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.infoitem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2px;
+  font-size: 17px;
+}
+
+.infolabel {
+  color: #267bf5;
+  font-weight: 600;
+  text-shadow: 1px 2px 8px rgba(63, 131, 248, 0.12);
+  min-width: 70px;
+  letter-spacing: 0.05em;
+}
+
+.infovalue {
+  color: #222;
+  font-weight: 500;
+  margin-left: 16px;
+  /* 시각적으로 분리 (조금 더 강조하고 싶으면 폰트 크기/두께 조정 가능) */
+}
+
+.myinfobuttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+  justify-content: center;
+  margin-bottom: 0;
+}
+
+.myinfoBtn {
+  padding: 8px 20px;
+  border-radius: 8px;
+  background: #f5f5f5;
+  border: 1px solid #d1d5db;
+  color: #267bf5;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.myinfoBtn:hover {
+  background: #e0eaff;
+}
