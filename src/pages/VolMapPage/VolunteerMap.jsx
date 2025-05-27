@@ -167,7 +167,7 @@ const VolunteerMap = () => {
         ) : locationError ? (
           <div className={styles.errorcontainer}>
             <p>위치 정보를 가져오는데 문제가 발생했습니다: {locationError}</p>
-            <p>기본 위치(제주도)로 지도를 표시합니다.</p>
+            <p>기본 위치(숭실대)로 지도를 표시합니다.</p>
             <div id="map" ref={mapContainer} className={styles.mapview} />
           </div>
         ) : (

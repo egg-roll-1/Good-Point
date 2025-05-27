@@ -1,4 +1,4 @@
-import { authAxios, publicAxios } from '../../auth/config/axios';
+import { publicAxios } from '../../auth/config/axios';
 import * as Model from './model';
 
 /**
@@ -55,15 +55,4 @@ export const getVolunteerWorkDetail = async ({ id }) => {
   return data.result;
 };
 
-/**
- * 봉사활동을 신청합니다.
- * @typedef {Object} PostVolunteerWorkRequest
- * @property {string} id 봉사활동 ID
- *
- * @param {PostVolunteerWorkRequest}
- * @returns {Promise<undefined>}
- */
-export const requestVolunteerWork = async ({ id }) => {
-  const { data } = await authAxios.post(`/volunteer-work/${id}`);
-  return data.result;
-};
+
