@@ -9,3 +9,16 @@ export const getUserProfile = async () => {
   const { data } = await authAxios.get('/user');
   return data.result;
 };
+
+export const changePassword = async (oldPassword, newPassword) => {
+  const { data } = await authAxios.post('/auth/change-password', {
+    oldPassword,
+    newPassword,
+  });
+  return data;
+};
+
+export const deleteUser = async () => {
+  const { data } = await authAxios.delete('/user');
+  return data;
+};
