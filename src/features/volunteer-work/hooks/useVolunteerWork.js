@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import {
   getVolunteerWorkDetail,
   getVolunteerWorkList,
-  getVolunteerWorkListByGeometry,
+  // getVolunteerWorkListByGeometry,
 } from '../api/api';
 
 import * as RequestModel from '../api/api';
@@ -10,7 +10,7 @@ import * as RequestModel from '../api/api';
 export const volunteerWorkKeys = {
   all: ['volunteer-work'],
   list: (request) => [...volunteerWorkKeys.all, 'list', request],
-  geometry: (request) => [...volunteerWorkKeys.all, 'geometry', request],
+  // geometry: (request) => [...volunteerWorkKeys.all, 'geometry', request],
   detail: (request) => [...volunteerWorkKeys.all, 'detail', request],
 };
 
@@ -30,15 +30,14 @@ export const useVolunteerWork = (request) => {
     queryKey: volunteerWorkKeys.list(request),
     queryFn: () => getVolunteerWorkList(request),
     select: (data) => {
-      // data는 전체 result 객체
       return {
-        content: data?.content || [],
-        totalElements: data?.totalElements,
-        totalPages: data?.totalPages,
-        number: data?.number,
-        size: data?.size,
-        isFirst: data?.isFirst,
-        isLast: data?.isLast,
+        content: data?.result || [],
+        totalElements: data?.result?.length || 0, 
+        totalPages: 1,
+        number: 0,
+        size: data?.result?.length || 0,
+        isFirst: true,
+        isLast: true, 
       };
     },
   });
@@ -49,13 +48,13 @@ export const useVolunteerWork = (request) => {
 /**
  * 위치기반으로 봉사활동 목록 데이터를 가져옵니다.
  * @param {RequestModel.GetVolunteerWorkRequestByGeometry} request
- */
-export const useVolunteerWorkByGeometry = (request) => {
-  return useQuery({
-    queryKey: volunteerWorkKeys.geometry(request),
-    queryFn: () => getVolunteerWorkListByGeometry(request),
-  });
-};
+//  */
+// export const useVolunteerWorkByGeometry = (request) => {
+//   return useQuery({
+//     queryKey: volunteerWorkKeys.geometry(request),
+//     queryFn: () => getVolunteerWorkListByGeometry(request),
+//   });
+// };
 
 /**
  * 봉사활동 상세 데이터를 가져옵니다.

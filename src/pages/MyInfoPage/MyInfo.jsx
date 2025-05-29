@@ -162,7 +162,6 @@ const MyInfo = () => {
             value={userInfo.gender === 'M' ? '남성' : userInfo.gender === 'F' ? '여성' : ''}
           />
           <InfoItem label="나이" value={userInfo.age ? `${userInfo.age}세` : '없음'} />
-          <InfoItem label="포인트" value={`${userInfo.creditBalance} point`} />
         </div>
         <div className={styles.myinfobuttons}>
           <button className={styles.myinfoBtn} onClick={() => setShowPwModal(true)}>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useVolunteerWorkDetail } from '../../features/volunteer-work/hooks/useVolunteerWork';
-import { requestVolunteerWork } from '../../features/volunteer-work/api/api';
+import { useVolunteerWorkRequest } from '../../features/volunteer-request/hooks/useVolunteerRequest'; // 변경
 import styles from './VolDetailPage.module.css';
 import Button from '../../components/Button/Button';
 import { Layout } from '../../components/Layout/Layout';
@@ -11,6 +11,9 @@ const VolDetailPage = () => {
   
   // API를 통해 상세 데이터 가져오기
   const { data, isLoading, error } = useVolunteerWorkDetail({ id: parseInt(id) });
+  
+  // 봉사 신청 훅 사용 (추가)
+  const { mutate: requestVolunteer, isPending } = useVolunteerWorkRequest();
 
   // 날짜 포맷팅 함수
   const formatDate = (dateString) => {
@@ -52,18 +55,21 @@ const VolDetailPage = () => {
     return categoryMap[foundTag.title] || foundTag.title;
   };
 
-  // 봉사 신청 핸들러
-  const handleApply = async () => {
-    try {
-      await requestVolunteerWork({ id: parseInt(id) });
-      alert('봉사 신청이 완료되었습니다.');
-    } catch (error) {
-      console.error('봉사 신청 실패:', error);
-      alert('봉사 신청에 실패했습니다. 다시 시도해주세요.');
-    }
+  // 봉사 신청 핸들러 (수정)
+  const handleApply = () => {
+    requestVolunteer(
+      { id: parseInt(id) },
+      {
+        onSuccess: () => {
+          alert('봉사 신청이 완료되었습니다.');
+        },
+        onError: (error) => {
+          console.error('봉사 신청 실패:', error);
+          alert('봉사 신청에 실패했습니다. 다시 시도해주세요.');
+        }
+      }
+    );
   };
-
-
 
   if (isLoading) {
     return (
@@ -144,7 +150,12 @@ const VolDetailPage = () => {
           )}
         </div>
         <div className={styles.voldetailbutton}>
-          <Button type={'action'} text={'신청하기'} onClick={handleApply} />
+          <Button 
+            type={'action'} 
+            text={isPending ? '신청 중...' : '신청하기'} 
+            onClick={handleApply}
+            disabled={isPending} // 추가
+          />
         </div>
       </div>
     </Layout>

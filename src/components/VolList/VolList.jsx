@@ -4,25 +4,40 @@ import { useVolunteerWork } from "../../features/volunteer-work/hooks/useVolunte
 import PageNum from '../PageNum/PageNum';
 import styles from './VolList.module.css';
 
-const VolList = () => {
+const VolList = ({ passedData, passedIsLoading, latitude, longitude, keyword}) => {
   const navigate = useNavigate();
   const [page, setPage] = useState(1);
   const [pageSize] = useState(10);
 
   // useVoulunteerWork 훅을 사용하여 데이터 fetching
-  const { data, isLoading, error } = useVolunteerWork({
-    page: page, // API가 1부터 시작하는 경우
-    size: pageSize,
-    keyword: '', // 검색어가 있다면 여기에 추가
+  const { data: fetchedData , isLoading : fetchedIsLoading, error } = useVolunteerWork({
+    latitude: latitude || '37.49595', // 숭실대 위도(기본))
+    longitude: longitude || '126.9571', // 숭실대 경도(기본)
+    distanceKm: 10, // 범위: 기본값: 10
+    keyword: keyword || '', // 검색어가 있다면 여기에 추가
   });
 
-  const items = data?.content || [];
-  const totalElements = data?.totalElements || 0;
+   // 부모에서 전달받은 데이터가 있으면 사용하고, 없으면 자체적으로 가져온 데이터 사용
+  const data = passedData || fetchedData;
+  const isLoading = passedIsLoading !== undefined ? passedIsLoading : fetchedIsLoading;
+  
+ // 클라이언트 사이드 페이지네이션: 서버에서 전체 데이터를 받아와서 클라이언트에서 나누기
+  const allItems = data?.content || data?.result || [];
+  const totalElements = allItems.length;
+  const startIndex = (page - 1) * pageSize;
+  const endIndex = startIndex + pageSize;
+  const items = allItems.slice(startIndex, endIndex);
 
   const handleItemClick = (item) => {
     // 상세 페이지로 이동하면서 ID 전달
     navigate(`/voldetail/${item.id}`);
   };
+
+  const handlePageChange = (newPage) => {
+    setPage(newPage);
+    // 페이지 변경 시 맨 위로 스크롤
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
 
   // 날짜 포맷팅 함수
   const formatDate = (dateString) => {
@@ -32,8 +47,6 @@ const VolList = () => {
 
   // 기간 포맷팅 함수
   const formatPeriod = (startDate, endDate) => {
-    const start = new Date(startDate);
-    const end = new Date(endDate);
     return `${formatDate(startDate)} ~ ${formatDate(endDate)}`;
   };
 
@@ -71,7 +84,8 @@ const VolList = () => {
     return (
       <div>
       <div className={styles.vllist}>
-        {items && items.map((item) => (
+        {items && items.length > 0 ? (
+          items.map((item) => (
           <div
             className={styles.vlitem}
             key={item.id}
@@ -93,14 +107,17 @@ const VolList = () => {
               </div>
             </div>
           </div>
-        ))}
+        ))
+      ):(
+        <div className={styles.nodata}>이 지역에 등록된 봉사활동이 없습니다.</div>
+      )}
       </div>
       
       {/* 페이지네이션 */}
-      {items && items.length > 0 && (
+      {items && items.length > 0 && totalElements > pageSize && (
         <PageNum
           currentPage={page}
-          onPageChange={setPage}
+          onPageChange={handlePageChange}
           totalItems={totalElements} // 실제 총 아이템 수로 변경 필요
           pageSize={pageSize}
         />

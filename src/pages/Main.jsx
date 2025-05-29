@@ -1,40 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Layout } from '../components/Layout/Layout.jsx';
 import MenuGrid from '../components/MenuGrid/MenuGrid.jsx';
 import SearchBar from '../components/SearchBar/SearchBar.jsx';
 import VolunteerCard from '../components/VolunteerCard/VolunteerCard.jsx';
+import { useNavigate } from 'react-router-dom';
+import { getVolunteerWorkList } from '../features/volunteer-work/api/api'; // 실제 경로 맞게 수정!
 
-const volunteerList = [
-  {
-    region: '경북',
-    title: '[사전신청] 산불 재난지역 자원봉사자 모집',
-    people: 'xxx명',
-    recruitDate: '2025.xx',
-    volunteerDate: '2025.xx',
-  },
-  {
-    region: '경북',
-    title: '[사전신청] 산불 재난지역 자원봉사자 모집',
-    people: 'xxx명',
-    recruitDate: '2025.xx',
-    volunteerDate: '2025.xx',
-  },
-  {
-    region: '경북',
-    title: '[사전신청] 산불 재난지역 자원봉사자 모집',
-    people: 'xxx명',
-    recruitDate: '2025.xx',
-    volunteerDate: '2025.xx',
-  },
-  {
-    region: '경북',
-    title: '[사전신청] 산불 재난지역 자원봉사자 모집',
-    people: 'xxx명',
-    recruitDate: '2025.xx',
-    volunteerDate: '2025.xx',
-  },
-];
 const Main = () => {
+  const [volunteerList, setVolunteerList] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // 봉사활동 리스트 받아오기
+    getVolunteerWorkList().then((data) => {
+      setVolunteerList((data.result || []).slice(0, 4));
+    });
+  }, []);
+
+  // 카드 클릭시 상세페이지로 이동
+  const handleCardClick = (id) => {
+    navigate(`/voldetail/${id}`);
+  };
+
   return (
     <Layout>
       <div className="main-page" style={{ marginTop: '50px', padding: '20px' }}>
@@ -46,8 +33,14 @@ const Main = () => {
         </h2>
 
         <div style={styles.cardGrid}>
-          {volunteerList.map((item, index) => (
-            <VolunteerCard key={index} {...item} />
+          {volunteerList.map((item) => (
+            <div
+              key={item.id}
+              onClick={() => handleCardClick(item.id)}
+              style={{ cursor: 'pointer' }}
+            >
+              <VolunteerCard {...item} />
+            </div>
           ))}
         </div>
       </div>
@@ -60,7 +53,6 @@ const styles = {
     display: 'grid',
     gridTemplateColumns: 'repeat(2, 1fr)',
     gap: '16px',
-    // paddingBottom: '80px',
   },
 };
 

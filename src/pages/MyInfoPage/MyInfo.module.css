@@ -37,12 +37,13 @@
   text-shadow: 1px 1px 2px #dbeafe;
   min-width: 80px;
   flex-shrink: 0;
+  margin-left: 20px;
 }
 
 .infovalue {
   font-size: 1.1rem;
   color: #222;
-  margin-left: 18px;
+  margin-right: 20px;
   word-break: break-all;
   text-align: right;
   flex: 1;
@@ -54,6 +55,7 @@
   gap: 16px;
   margin-bottom: 0;
   justify-content: center;
+  padding-top: 320px;
 }
 
 .myinfoBtn {
