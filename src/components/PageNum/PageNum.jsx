@@ -9,10 +9,17 @@ const PageNum = ({ currentPage, totalItems, pageSize, onPageChange, totalPages: 
   const totalPages = propsTotalPages || Math.ceil(totalItems / pageSize) || 1;
 
   const handleClick = (page) => {
-    if (page >= 1 && page <= totalPages) {
+    if (page >= 1 && page <= totalPages && page !== currentPage) {
       onPageChange(page);
     }
   };
+
+  const handleKeyDown = (event, page) => {
+    if (event.key == 'Enter' || ElementInternals.key === ' ') {
+      event.preventDefault();
+      handleClick(page); 
+    }
+  }
 
   const renderPageNumbers = () => {
     const pages = [];
@@ -33,7 +40,9 @@ const PageNum = ({ currentPage, totalItems, pageSize, onPageChange, totalPages: 
         <button
           key="first"
           onClick={() => handleClick(1)}
+          onKeyDown={(e) => handleKeyDown(e, 1)}
           className={styles.pagebutton}
+          aria-label="첫 페이지로 이동"
         >
           1
         </button>
@@ -51,7 +60,10 @@ const PageNum = ({ currentPage, totalItems, pageSize, onPageChange, totalPages: 
         <button
           key={i}
           onClick={() => handleClick(i)}
+          onKeyDown={(e) => handleKeyDown(e, i)}
           className={`${styles.pagebutton} ${currentPage === i ? styles.active : ''}`}
+          aria-label={`${i}페이지로 이동`}
+          aria-current={currentPage === i ? 'page' : undefined}
         >
           {i}
         </button>
@@ -69,7 +81,9 @@ const PageNum = ({ currentPage, totalItems, pageSize, onPageChange, totalPages: 
         <button
           key="last"
           onClick={() => handleClick(totalPages)}
+          onKeyDown={(e) => handleKeyDown(e, totalPages)}
           className={styles.pagebutton}
+          aria-label="마지막 페이지로 이동"
         >
           {totalPages}
         </button>
@@ -78,23 +92,36 @@ const PageNum = ({ currentPage, totalItems, pageSize, onPageChange, totalPages: 
     
     return pages;
   };
+  
+  // 총 페이지가 1개 이하면 페이지네이션 표시 x
+  if (totalPages <= 1) {
+    return null;
+  }
 
   return (
-    <div className={styles.pagenumwrapper}>
-      <img
+   <nav className={styles.pagenumwrapper} aria-label="페이지 네비게이션">
+      <button
         onClick={() => handleClick(currentPage - 1)}
-        className={styles.arrowbutton}
-        src={leftArrow}
-        alt="이전"
-      />
+        onKeyDown={(e) => handleKeyDown(e, currentPage - 1)}
+        className={`${styles.arrowbutton} ${currentPage === 1 ? styles.disabled : ''}`}
+        disabled={currentPage === 1}
+        aria-label="이전 페이지"
+      >
+        <img src={leftArrow} alt="이전" />
+      </button>
+      
       {renderPageNumbers()}
-      <img
+      
+      <button
         onClick={() => handleClick(currentPage + 1)}
-        className={styles.arrowbutton}
-        src={rightArrow}
-        alt="다음"
-      />
-    </div>
+        onKeyDown={(e) => handleKeyDown(e, currentPage + 1)}
+        className={`${styles.arrowbutton} ${currentPage === totalPages ? styles.disabled : ''}`}
+        disabled={currentPage === totalPages}
+        aria-label="다음 페이지"
+      >
+        <img src={rightArrow} alt="다음" />
+      </button>
+    </nav>
   );
 };
 

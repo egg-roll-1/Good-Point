@@ -5,7 +5,7 @@ import styles from './VolunteerMap.module.css';
 
 import Group33910 from '../../assets/Group 33910.png';
 import { Layout } from '../../components/Layout/Layout';
-import { useVolunteerWorkByGeometry } from '../../features/volunteer-work/hooks/useVolunteerWork';
+import { useVolunteerWork } from '../../features/volunteer-work/hooks/useVolunteerWork';
 
 const VolunteerMap = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -20,9 +20,12 @@ const VolunteerMap = () => {
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
   const [searchKeyword, setSearchKeyword] = useState('');
 
-  const { data, isLoading: isDataLoading } = useVolunteerWorkByGeometry({
+  // 변경: useVolunteerWorkByGeometry 대신 useVolunteerWork 사용
+  const { data, isLoading: isDataLoading } = useVolunteerWork({
     latitude: currentPosition.lat,
     longitude: currentPosition.lng,
+    distanceKm: 10, // 기본 검색 범위 설정
+    keyword: searchKeyword, // 검색어
   });
 
   // 스와이프 핸들러 설정
@@ -111,13 +114,8 @@ const VolunteerMap = () => {
     };
   }, [currentPosition, isLoading]);
 
-  // 검색어 변경 핸들러
-  const handleSearchChange = (e) => {
-    setSearchKeyword(e.target.value);
-  };
-
-  // 검색 실행 핸들러
-  const handleSearch = (e) => {
+  // 검색 기능
+ const handleSearch = (e) => {
     e.preventDefault();
 
     if (!searchKeyword.trim() || !mapInstance.current || !window.kakao) return;
@@ -145,6 +143,14 @@ const VolunteerMap = () => {
 
         // 검색된 장소들이 모두 보이도록 지도 범위 설정
         mapInstance.current.setBounds(bounds);
+        
+        // 검색된 첫 번째 장소의 위치로 currentPosition 업데이트
+        if (data && data.length > 0) {
+          setCurrentPosition({
+            lat: parseFloat(data[0].y),
+            lng: parseFloat(data[0].x)
+          });
+        }
       } else if (status === window.kakao.maps.services.Status.ZERO_RESULT) {
         alert('검색 결과가 없습니다.');
       } else {
@@ -161,7 +167,7 @@ const VolunteerMap = () => {
         ) : locationError ? (
           <div className={styles.errorcontainer}>
             <p>위치 정보를 가져오는데 문제가 발생했습니다: {locationError}</p>
-            <p>기본 위치(제주도)로 지도를 표시합니다.</p>
+            <p>기본 위치(숭실대)로 지도를 표시합니다.</p>
             <div id="map" ref={mapContainer} className={styles.mapview} />
           </div>
         ) : (
@@ -183,17 +189,23 @@ const VolunteerMap = () => {
                   className={styles.searchinput}
                   placeholder="지역 검색"
                   value={searchKeyword}
-                  onChange={handleSearchChange}
+                  onChange={(e) => setSearchKeyword(e.target.value)}
                 />
               </div>
             </form>
 
             {/* 바텀 시트 봉사정보 */}
             {bottomSheetVisible && (
-              <div className={styles.bottomsheetcontent}>
-                <div className={styles.volunteertitletext}>지역 봉사</div>
-                <VolList />
-              </div>
+        <div className={styles.bottomsheetcontent}>
+          <div className={styles.volunteertitletext}>지역 봉사</div>
+          <VolList 
+            passedData={data} 
+            passedIsLoading={isDataLoading}
+            latitude={currentPosition.lat}
+            longitude={currentPosition.lng}
+            keyword={searchKeyword}
+          />
+        </div>
             )}
           </div>
         </div>

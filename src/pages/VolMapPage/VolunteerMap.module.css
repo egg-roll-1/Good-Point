@@ -91,7 +91,7 @@
   padding: 20px 4%;
   margin-top: 10px;
   overflow-y: auto; /* 내용이 많을 경우 스크롤 허용 */
-  max-height: calc(85vh - 250px); /* 스크롤 영역 최대 높이 (총 높이 - 검색바/헤더 높이) */
+  max-height: calc(85vh - 100px); /* 스크롤 영역 최대 높이 (총 높이 - 검색바/헤더 높이) */
 }
 
 .bottomsheetcontent h3 {

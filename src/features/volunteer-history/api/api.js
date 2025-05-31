@@ -6,6 +6,11 @@ import * as Model from './model';
  * @returns {Promise<Model.VolunteerHistory[]>}
  */
 export const getVolunteerHistory = async () => {
-  const { data } = await authAxios.get('/volunteer-history');
-  return data.result;
+  try {
+    const { data } = await authAxios.get('/volunteer-history');
+    return data.result;
+  } catch (error) {
+    console.error('봉사활동 내역 조회 실패:', error);
+    throw error;
+  }
 };

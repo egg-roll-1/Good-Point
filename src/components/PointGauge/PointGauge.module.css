@@ -1,16 +1,98 @@
+/* PointGauge.module.css */
+
 .gaugewrapper {
-    width: 259px;
-    height: 29px;
-    background-color: #ffccd3;
-    border-radius: 60px;
-    overflow: hidden;
-    margin: 0 auto;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.gaugecontainer {
+  width: 100%;
+}
+
+.gaugetrack {
+  width: 100%;
+  height: 24px;
+  background: #e2e8f0;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 2px solid #cbd5e0;
+}
+
+.gaugefill {
+  height: 100%;
+  background: linear-gradient(90deg, #4facfe 100%);
+  border-radius: 10px;
+  position: relative;
+  transition: width 2s ease-in-out;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(67, 233, 123, 0.3);
+}
+
+.gaugeshine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.6),
+    transparent
+  );
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.gaugeinfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  padding: 0 4px;
+}
+
+.gaugepercent {
+  font-size: 18px;
+  font-weight: 700;
+  color: #2d3748;
+}
+
+.gaugelabel {
+  font-size: 14px;
+  color: #718096;
+  font-weight: 500;
+}
+
+/* 호버 효과 */
+.gaugetrack:hover .gaugefill {
+  filter: brightness(1.1);
+  box-shadow: 0 4px 12px rgba(67, 233, 123, 0.4);
+}
+
+/* 반응형 디자인 */
+@media (max-width: 480px) {
+  .gaugetrack {
+    height: 20px;
   }
   
-  .gaugefill {
-    height: 100%;
-    background-color: #e03131;
-    border-radius: 60px 0 0 60px;
-    transition: width 0.4s ease;
+  .gaugepercent {
+    font-size: 16px;
   }
   
+  .gaugelabel {
+    font-size: 12px;
+  }
+}
