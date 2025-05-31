@@ -24,7 +24,7 @@
 
 .gaugefill {
   height: 100%;
-  background: linear-gradient(90deg, #4facfe 0%, #00f2fe 50%, #43e97b 100%);
+  background: linear-gradient(90deg, #4facfe 100%);
   border-radius: 10px;
   position: relative;
   transition: width 2s ease-in-out;

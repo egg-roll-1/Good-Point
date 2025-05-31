@@ -3,16 +3,17 @@ import { getVolunteerHistory } from '../api/api';
 
 export const volunteerHistoryKeys = {
   all: ['volunteer-history'],
-  list: (request) => [...volunteerHistoryKeys.all, 'list', request],
+  list: () => [...volunteerHistoryKeys.all, 'list'],
 };
 
 /**
  * 봉사내역을 조회합니다.
- * @returns
+ * @returns {Object} React Query 객체
  */
 export const useVolunteerHistory = () => {
   return useQuery({
     queryKey: volunteerHistoryKeys.list(),
-    queryFn: () => getVolunteerHistory(),
+    queryFn: getVolunteerHistory,
+    staleTime: 5 * 60 * 1000, // 5분 캐시
   });
 };
