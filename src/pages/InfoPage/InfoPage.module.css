@@ -18,10 +18,11 @@
 
 .info section {
   margin-bottom: 20px;
+  border-bottom: 1px solid #f1f1f1;
 }
 
 .info h3 {
-  color: #6246ea;
+  color: #3b82f6;
   font-size: 17px;
   margin-bottom: 6px;
   font-weight: 600;
@@ -30,7 +31,7 @@
 .info p,
 .info ul {
   font-size: 15px;
-  color: #222;
+  color: #333333;
   margin: 0 0 4px 0;
 }
 

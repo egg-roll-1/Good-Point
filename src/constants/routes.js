@@ -9,6 +9,7 @@ const routes = {
   history: '/history',
   volmap: '/volmap',
   voldetail: '/voldetail/:id', // id 파라미터 추가
+  volhislist: '/volhislist',
   info: '/info',
 };
 

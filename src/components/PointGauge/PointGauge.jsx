@@ -6,7 +6,7 @@ const PointGauge = ({ percent }) => {
     <div className={styles.gaugewrapper}>
       <div className={styles.gaugecontainer}>
         <div className={styles.gaugetrack}>
-          <div className={styles.gaugefill} style={{ width: `${44}%` }}>
+          <div className={styles.gaugefill} style={{ width: `${percent}%` }}>
             <div className={styles.gaugeshine}></div>
           </div>
         </div>

@@ -24,7 +24,7 @@
 
 .gaugefill {
   height: 100%;
-  background: linear-gradient(90deg, #4facfe 0%, #00f2fe 50%, #43e97b 100%);
+  background: linear-gradient(90deg, #4facfe 100%);
   border-radius: 10px;
   position: relative;
   transition: width 2s ease-in-out;
@@ -38,12 +38,7 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.6),
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
   animation: shine 3s infinite;
 }
 
@@ -87,11 +82,11 @@
   .gaugetrack {
     height: 20px;
   }
-  
+
   .gaugepercent {
     font-size: 16px;
   }
-  
+
   .gaugelabel {
     font-size: 12px;
   }

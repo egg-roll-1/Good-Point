@@ -5,10 +5,10 @@ import { useNavigate } from 'react-router-dom';
 
 const menuItems = [
   { icon: '', label: '지역봉사', to: '/volmap' },
-  { icon: '', label: '봉사신청내역', to: '/history' },
+  { icon: '', label: '신청내역', to: '/history' },
   { icon: '', label: '이용정보', to: '/info' },
-  { icon: '', label: '마이 \n페이지', to: '/myinfo' },
-  { icon: '', label: '포인트 \n조회', to: '/point' },
+  { icon: '', label: '마이페이지', to: '/myinfo' },
+  { icon: '', label: '포인트조회', to: '/point' },
   { icon: '', label: '자주묻는질문', to: '/faq' },
 ];
 

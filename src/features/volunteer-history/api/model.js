@@ -1,3 +1,5 @@
+import * as VolunteerWorkModel from '../../volunteer-work/api/model';
+
 /**
  * @typedef {Object} Credit
  * @property {number} id - 크레딧 ID
@@ -10,5 +12,10 @@
  * @property {string} endDateTime - 종료 시간 (ISO 8601 문자열)
  * @property {number} minute - 활동 시간 (분 단위)
  * @property {Credit} credit - 크레딧 정보
+ * @property {VolunteerWorkModel.VolunteerWork} volunteerWork - 봉사활동 정보
  */
-export const Types = {};
+
+export const Types = {
+  Credit: null, 
+  VolunteerHistory: null 
+};
