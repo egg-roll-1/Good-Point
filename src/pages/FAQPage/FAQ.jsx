@@ -1,6 +1,5 @@
 // src/pages/FAQPage/FAQ.jsx
 import React, { useState } from 'react';
-import SearchBar from '../../components/SearchBar/SearchBar.jsx';
 import PageNum from '../../components/PageNum/PageNum.jsx';
 import { Layout } from '../../components/Layout/Layout.jsx';
 import styles from './FAQ.module.css';
@@ -32,36 +31,66 @@ const faqData = [
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize] = useState(4); // 페이지당 3개씩 보여주도록 변경 (테스트용)
 
-  const toggleAnswer = (index) => {
-    setOpenIndex(index === openIndex ? null : index);
+  // 클라이언트 사이드 페이지네이션
+  const allItems = faqData;
+  const totalElements = allItems.length;
+  const startIndex = (currentPage - 1) * pageSize;
+  const endIndex = startIndex + pageSize;
+  const items = allItems.slice(startIndex, endIndex);
+
+  const toggleAnswer = (globalIndex) => {
+    // 전역 인덱스를 사용하여 올바른 FAQ 항목을 토글
+    setOpenIndex(globalIndex === openIndex ? null : globalIndex);
+  };
+
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
+    setOpenIndex(null); // 페이지 변경 시 열린 답변 닫기
+    // 페이지 변경 시 맨 위로 스크롤
+    window.scrollTo({top: 0, behavior: 'smooth'});
   };
 
   return (
     <Layout>
       <div className={styles.faqpage}>
         <h2 className={styles.faqtitle}>자주 묻는 질문</h2>
-        <SearchBar placeholder="무엇이든 찾아보세요" />
 
         <div className={styles.faqlist}>
-          {faqData.map((item, index) => (
-            <div
-              key={index}
-              className={`${styles.faqitem} ${openIndex === index ? styles.active : ''}`}
-              onClick={() => toggleAnswer(index)}
-              onMouseEnter={(e) => e.currentTarget.classList.add(styles.hover)}
-              onMouseLeave={(e) => e.currentTarget.classList.remove(styles.hover)}
-            >
-              <div className={styles.question}>
-                <span className={styles.qmark}>Q</span>
-                <span className={styles.questionText}>{item.question}</span>
+          {items.map((item, localIndex) => {
+            // 전역 인덱스 계산 (현재 페이지의 시작 인덱스 + 로컬 인덱스)
+            const globalIndex = startIndex + localIndex;
+            
+            return (
+              <div
+                key={globalIndex}
+                className={`${styles.faqitem} ${openIndex === globalIndex ? styles.active : ''}`}
+                onClick={() => toggleAnswer(globalIndex)}
+                onMouseEnter={(e) => e.currentTarget.classList.add(styles.hover)}
+                onMouseLeave={(e) => e.currentTarget.classList.remove(styles.hover)}
+              >
+                <div className={styles.question}>
+                  <span className={styles.qmark}>Q</span>
+                  <span className={styles.questionText}>{item.question}</span>
+                </div>
+                {openIndex === globalIndex && (
+                  <div className={styles.answer}>{item.answer}</div>
+                )}
               </div>
-              {openIndex === index && <div className={styles.answer}>{item.answer}</div>}
-            </div>
-          ))}
+            );
+          })}
         </div>
 
-        <PageNum currentPage={currentPage} totalPages={5} onPageChange={setCurrentPage} />
+        {/* 페이지네이션 - VolList와 동일한 방식으로 수정 */}
+        {items && items.length > 0 && totalElements > pageSize && (
+          <PageNum
+            currentPage={currentPage}
+            onPageChange={handlePageChange}
+            totalItems={totalElements}
+            pageSize={pageSize}
+          />
+        )}
       </div>
     </Layout>
   );

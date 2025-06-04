@@ -14,6 +14,7 @@ import FAQ from '../pages/FAQPage/FAQ';
 import VolunteerHistory from '../pages/VolunteerHistoryPage/VolunteerHistory';
 import VolunteerMap from '../pages/VolMapPage/VolunteerMap';
 import VolDetailPage from '../pages/VolDetailPage/VolDetailPage';
+import VolHistoryListPage from '../pages/VolHistoryListPage/VolHistoryListPage';
 import InfoPage from '../pages/InfoPage/InfoPage';
 
 // 배열을 선언하고 반환해야 합니다 (화살표 함수에서 중괄호를 사용할 때)
@@ -51,7 +52,7 @@ const router = createBrowserRouter([
         element: <FAQ />,
       },
       {
-        path: routes.history,
+        path: routes.volapply,
         element: <VolunteerHistory />,
       },
       {
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
       {
         path: routes.info,
         element: <InfoPage />,
+      },
+      {
+        path: routes.infopage,
+        element: <InfoPage/>
       },
     ],
   },

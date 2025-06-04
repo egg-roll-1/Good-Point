@@ -12,6 +12,10 @@ const StartPage = () => {
   const onClickLoginButton = () => {
     navigate(routes.login);
   };
+
+  const onClickSignUpButton = () => {
+    navigate(routes.signup)
+  }
   return (
     <Layout>
       <div className={styles.startframe}>
@@ -26,7 +30,7 @@ const StartPage = () => {
               <Button text={'로그인'} type={'login'} onClick={onClickLoginButton} />
             </div>
             <div className={styles.startpwbtn}>
-              <Button text={'회원가입'} type={'login'} />
+              <Button text={'회원가입'} type={'login'} onClick={onClickSignUpButton}/>
             </div>
           </div>
         </div>
