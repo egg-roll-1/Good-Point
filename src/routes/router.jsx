@@ -70,7 +70,7 @@ const router = createBrowserRouter([
       },
       {
         path: routes.infopage,
-        element: <InfoPage/>
+        element: <InfoPage />,
       },
     ],
   },

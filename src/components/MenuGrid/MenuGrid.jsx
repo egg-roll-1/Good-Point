@@ -14,7 +14,7 @@ import faqIcon from '../../assets/자주묻는질문.png';
 // (2) menuItems 배열의 icon 필드에 import한 변수를 할당
 const menuItems = [
   { icon: regionIcon, label: '지역봉사', to: '/volmap' },
-  { icon: historyIcon, label: '신청내역', to: '/history' },
+  { icon: historyIcon, label: '신청내역', to: '/volapply' },
   { icon: infoIcon, label: '이용정보', to: '/info' },
   { icon: myinfoIcon, label: '마이페이지', to: '/myinfo' },
   { icon: pointIcon, label: '포인트조회', to: '/point' },
