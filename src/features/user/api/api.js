@@ -9,13 +9,15 @@ export const getUserProfile = async () => {
   const { data } = await authAxios.get('/user');
   return data.result;
 };
-// 비밀번호 변경
-export const updatePassword = async (newPassword) => {
-  const { data } = await authAxios.patch('/user/password', { newPassword });
+
+export const changePassword = async (oldPassword, newPassword) => {
+  const { data } = await authAxios.post('/auth/change-password', {
+    oldPassword,
+    newPassword,
+  });
   return data;
 };
 
-// 회원 탈퇴
 export const deleteUser = async () => {
   const { data } = await authAxios.delete('/user');
   return data;

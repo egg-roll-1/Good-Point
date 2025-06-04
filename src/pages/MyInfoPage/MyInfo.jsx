@@ -5,9 +5,12 @@ import { useAuthGuard } from '../../features/auth/hooks/useAuth';
 import { getUserProfile } from '../../features/user/api/api';
 
 const MyInfo = () => {
-  const isAuth = useAuthGuard(true);
+  useAuthGuard(true);
   const [userInfo, setUserInfo] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [showPwModal, setShowPwModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getUserProfile()
@@ -63,6 +66,13 @@ const MyInfo = () => {
             <div className={styles.value}>{userInfo.creditBalance?.toLocaleString()} point</div>
           </div>
         </div>
+        {showPwModal && <ChangePasswordModal onClose={() => setShowPwModal(false)} />}
+        {showDeleteModal && (
+          <DeleteUserModal
+            onClose={() => setShowDeleteModal(false)}
+            onSuccess={handleAfterDelete}
+          />
+        )}
       </div>
     </Layout>
   );

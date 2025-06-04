@@ -10,7 +10,7 @@ const routes = {
   volmap: '/volmap',
   voldetail: '/voldetail/:id', // id 파라미터 추가
   volhislist: '/volhislist',
-  infopage: '/infopage'
+  info: '/info',
 };
 
 export default routes;

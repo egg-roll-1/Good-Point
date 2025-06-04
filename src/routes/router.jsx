@@ -63,9 +63,10 @@ const router = createBrowserRouter([
         path: '/voldetail/:id',
         element: <VolDetailPage />,
       },
+
       {
-        path: routes.volhislist,
-        element: <VolHistoryListPage/>,
+        path: routes.info,
+        element: <InfoPage />,
       },
       {
         path: routes.infopage,
