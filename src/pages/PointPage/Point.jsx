@@ -117,7 +117,7 @@ const Point = () => {
             현재 포인트:
             <span className={styles.pointnumber}>{totalPoints.toLocaleString()}P</span>
           </p>
-          <p className={styles.maxpoint}>최대: {maxPoint.toLocaleString()}P</p>
+          <p className={styles.maxpoint}>목표: {maxPoint.toLocaleString()}P</p>
         </div>
 
         {/* 액션 버튼들 */}

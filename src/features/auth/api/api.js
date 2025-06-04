@@ -31,3 +31,13 @@ export const signIn = async (request) => {
   const { data } = await publicAxios.post('/auth/login', request);
   return data.result;
 };
+
+
+/**
+ * 로그아웃 요청 (클라이언트만 처리)
+ * @returns {Promise<any>}
+ */
+export const signOut = async () => {
+  // 서버 API 호출 없이 성공 응답 반환
+  return Promise.resolve({ success: true });
+};

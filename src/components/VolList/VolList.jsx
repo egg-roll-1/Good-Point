@@ -8,6 +8,7 @@ const VolList = ({ passedData, passedIsLoading, latitude, longitude, keyword}) =
   const navigate = useNavigate();
   const [page, setPage] = useState(1);
   const [pageSize] = useState(10);
+  const [selectedCategory, setSelectedCategory] = useState('전체'); // 카테고리 필터 state 추가
 
   // useVoulunteerWork 훅을 사용하여 데이터 fetching
   const { data: fetchedData , isLoading : fetchedIsLoading, error } = useVolunteerWork({
@@ -21,35 +22,6 @@ const VolList = ({ passedData, passedIsLoading, latitude, longitude, keyword}) =
   const data = passedData || fetchedData;
   const isLoading = passedIsLoading !== undefined ? passedIsLoading : fetchedIsLoading;
   
- // 클라이언트 사이드 페이지네이션: 서버에서 전체 데이터를 받아와서 클라이언트에서 나누기
-  const allItems = data?.content || data?.result || [];
-  const totalElements = allItems.length;
-  const startIndex = (page - 1) * pageSize;
-  const endIndex = startIndex + pageSize;
-  const items = allItems.slice(startIndex, endIndex);
-
-  const handleItemClick = (item) => {
-    // 상세 페이지로 이동하면서 ID 전달
-    navigate(`/voldetail/${item.id}`);
-  };
-
-  const handlePageChange = (newPage) => {
-    setPage(newPage);
-    // 페이지 변경 시 맨 위로 스크롤
-    window.scrollTo({top: 0, behavior: 'smooth'});
-  }
-
-  // 날짜 포맷팅 함수
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    return `${date.getFullYear()}.${(date.getMonth() + 1).toString().padStart(2, '0')}.${date.getDate().toString().padStart(2, '0')}`;
-  };
-
-  // 기간 포맷팅 함수
-  const formatPeriod = (startDate, endDate) => {
-    return `${formatDate(startDate)} ~ ${formatDate(endDate)}`;
-  };
-
   // 태그에서 카테고리 추출 함수
   const getCategoryFromTags = (tagList) => {
     if (!tagList || tagList.length === 0) return '기타';
@@ -72,17 +44,84 @@ const VolList = ({ passedData, passedIsLoading, latitude, longitude, keyword}) =
     return categoryMap[foundTag.title] || foundTag.title;
   };
 
-    if(isLoading) {
-      return <div className={styles.loading}>로딩 중...</div>;
-    }
+  // 카테고리별 필터링 로직
+  const allItems = data?.content || data?.result || [];
+  const filteredItems = selectedCategory === '전체' 
+    ? allItems 
+    : allItems.filter(item => getCategoryFromTags(item.tagList) === selectedCategory);
 
-    if(error) {
-      return <div className={styles.error}>데이터를 불러오는데 실패했습니다.</div>
-    }
+  // 클라이언트 사이드 페이지네이션: 필터링된 데이터에 대해 페이지네이션 적용
+  const totalElements = filteredItems.length;
+  const startIndex = (page - 1) * pageSize;
+  const endIndex = startIndex + pageSize;
+  const items = filteredItems.slice(startIndex, endIndex);
 
-    
-    return (
-      <div>
+  // 카테고리 목록 생성
+  const categories = ['전체', '보건', '생활', '재난', '환경', '교육', '기타'];
+
+  const handleItemClick = (item) => {
+    // 상세 페이지로 이동하면서 ID 전달
+    navigate(`/voldetail/${item.id}`);
+  };
+
+  const handlePageChange = (newPage) => {
+    setPage(newPage);
+    // 페이지 변경 시 맨 위로 스크롤
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  };
+
+  // 카테고리 변경 핸들러
+  const handleCategoryChange = (event) => {
+    setSelectedCategory(event.target.value);
+    setPage(1); // 카테고리 변경 시 첫 페이지로 이동
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  };
+
+  // 날짜 포맷팅 함수
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return `${date.getFullYear()}.${(date.getMonth() + 1).toString().padStart(2, '0')}.${date.getDate().toString().padStart(2, '0')}`;
+  };
+
+  // 기간 포맷팅 함수
+  const formatPeriod = (startDate, endDate) => {
+    return `${formatDate(startDate)} ~ ${formatDate(endDate)}`;
+  };
+
+  if(isLoading) {
+    return <div className={styles.loading}>로딩 중...</div>;
+  }
+
+  if(error) {
+    return <div className={styles.error}>데이터를 불러오는데 실패했습니다.</div>
+  }
+
+  return (
+    <div>
+      {/* 카테고리 필터 combobox */}
+      <div className={styles.filterContainer}>
+        <span className={styles.resultCount}>
+          ({totalElements}개의 봉사활동)
+        </span>
+        <div className={styles.categoryFilterGroup}>
+          <label htmlFor="categoryFilter" className={styles.filterLabel}>
+            카테고리:
+          </label>
+          <select 
+            id="categoryFilter"
+            value={selectedCategory} 
+            onChange={handleCategoryChange}
+            className={styles.categorySelect}
+          >
+            {categories.map(category => (
+              <option key={category} value={category}>
+                {category}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
+
       <div className={styles.vllist}>
         {items && items.length > 0 ? (
           items.map((item) => (
@@ -109,7 +148,12 @@ const VolList = ({ passedData, passedIsLoading, latitude, longitude, keyword}) =
           </div>
         ))
       ):(
-        <div className={styles.nodata}>이 지역에 등록된 봉사활동이 없습니다.</div>
+        <div className={styles.nodata}>
+          {selectedCategory === '전체' 
+            ? '이 지역에 등록된 봉사활동이 없습니다.' 
+            : `선택한 카테고리(${selectedCategory})에 등록된 봉사활동이 없습니다.`
+          }
+        </div>
       )}
       </div>
       
@@ -118,12 +162,12 @@ const VolList = ({ passedData, passedIsLoading, latitude, longitude, keyword}) =
         <PageNum
           currentPage={page}
           onPageChange={handlePageChange}
-          totalItems={totalElements} // 실제 총 아이템 수로 변경 필요
+          totalItems={totalElements}
           pageSize={pageSize}
         />
       )}
     </div>
-    );
-  };
+  );
+};
 
 export default VolList;
