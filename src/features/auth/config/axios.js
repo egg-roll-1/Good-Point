@@ -12,12 +12,13 @@ export const authAxios = axios.create({
 
 authAxios.interceptors.request.use(
   (config) => {
-  const token = localStorage.getItem(accessTokenKey);
-  if(token){
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-  return config;
-},
-(error) => {
-  return Promise.reject(error);
-});
+    const token = localStorage.getItem(accessTokenKey);
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  },
+);
