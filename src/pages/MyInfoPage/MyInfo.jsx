@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styles from './MyInfo.module.css';
 import { Layout } from '../../components/Layout/Layout';
-import { useAuthGuard } from '../../features/auth/hooks/useAuth';
 import { getUserProfile } from '../../features/user/api/api';
 
 const MyInfo = () => {
-  const isAuth = useAuthGuard(true);
   const [userInfo, setUserInfo] = useState(null);
   const [loading, setLoading] = useState(true);
 

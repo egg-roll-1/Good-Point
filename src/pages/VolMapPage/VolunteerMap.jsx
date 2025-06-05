@@ -16,8 +16,8 @@ const VolunteerMap = () => {
   const currentMarkerRef = useRef(null); // 현재 정보창이 열린 마커 ref
   
   const [currentPosition, setCurrentPosition] = useState({
-    lat: 33.450701, // 기본값 (위치 권한이 거부될 경우 사용)
-    lng: 126.570667,
+    lat: 37.4967, // 숭실대학교 정보과학관 좌표로 변경
+    lng: 126.9571,
   });
   const [locationError, setLocationError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -196,28 +196,54 @@ const VolunteerMap = () => {
     }
   };
 
-  // 현재 위치 가져오기
+  // 현재 위치 가져오기 - HTTPS 체크 추가
   useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setCurrentPosition({
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          });
-          setIsLoading(false);
-        },
-        (error) => {
-          console.error('현재 위치를 가져오는데 실패했습니다:', error);
-          setLocationError(error.message);
-          setIsLoading(false);
-        },
-        { enableHighAccuracy: true },
-      );
-    } else {
-      setLocationError('이 브라우저에서는 위치 서비스를 지원하지 않습니다.');
+    // HTTPS 환경 체크
+    const isSecureContext = location.protocol === 'https:' || location.hostname === 'localhost';
+    
+    if (!navigator.geolocation) {
+      setLocationError(console.log('이 브라우저에서는 위치 서비스를 지원하지 않습니다.'));
       setIsLoading(false);
+      return;
     }
+
+    // HTTP 환경에서는 위치 요청하지 않고 기본값 사용
+    if (!isSecureContext) {
+      console.warn(console.log('HTTPS 환경이 아니므로 기본 위치(숭실대학교 정보과학관)를 사용합니다.'));
+      setCurrentPosition({
+        lat: 37.4967, // 숭실대학교 정보과학관 좌표
+        lng: 126.9571,
+      });
+      setLocationError(console.log('보안상 HTTPS 환경에서만 현재 위치를 사용할 수 있습니다. 기본 위치(숭실대학교 정보과학관)로 설정되었습니다.'));
+      setIsLoading(false);
+      return;
+    }
+
+    // HTTPS 환경에서만 실제 위치 요청
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        setCurrentPosition({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        });
+        setIsLoading(false);
+      },
+      (error) => {
+        console.error(console.log('현재 위치를 가져오는데 실패했습니다:', error));
+        // 에러 발생시 기본 위치로 폴백
+        setCurrentPosition({
+          lat: 37.4967, // 숭실대학교 정보과학관 좌표
+          lng: 126.9571,
+        });
+        setLocationError(console.log(`위치 정보를 가져올 수 없습니다: ${error.message}. 기본 위치(숭실대학교 정보과학관)로 설정되었습니다.`));
+        setIsLoading(false);
+      },
+      { 
+        enableHighAccuracy: true,
+        timeout: 10000, // 10초 타임아웃 추가
+        maximumAge: 600000 // 10분간 캐시 사용
+      },
+    );
   }, []);
 
   // 카카오맵 로드 및 초기화
@@ -368,7 +394,7 @@ const VolunteerMap = () => {
         ) : locationError ? (
           <div className={styles.errorcontainer}>
             <p>위치 정보를 가져오는데 문제가 발생했습니다: {locationError}</p>
-            <p>기본 위치(숭실대)로 지도를 표시합니다.</p>
+            <p>기본 위치(숭실대학교 정보과학관)로 지도를 표시합니다.</p>
             <div id="map" ref={mapContainer} className={styles.mapview} />
           </div>
         ) : (

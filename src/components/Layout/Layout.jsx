@@ -30,7 +30,6 @@ export const Layout = ({ children }) => {
                 border: 'none',
                 cursor: 'pointer',
                 fontWeight: '700',
-                padding: '4px 8px',
                 opacity: logoutMutation.isPending ? 0.6 : 1 // 로딩 시 투명도 조절
               }}
             >
