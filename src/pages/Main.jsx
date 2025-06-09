@@ -29,7 +29,6 @@ const Main = () => {
   return (
     <Layout>
       <div className="main-page" style={{ marginTop: '50px', padding: '20px' }}>
-        <SearchBar placeholder="검색어를 입력하세요." />
         <MenuGrid />
 
         <h2

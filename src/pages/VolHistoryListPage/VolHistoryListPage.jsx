@@ -10,6 +10,8 @@ import { useAuthGuard } from '../../features/auth/hooks/useAuth';
 const VolHistoryListPage = () => {
   // 로그인 상태 확인 (로그인되지 않은 경우 리다이렉트)
   const isAuthenticated = useAuthGuard();
+
+  
   
   // 페이지네이션 상태 추가 -> 5개가 한페이지
   const [currentPage, setCurrentPage] = useState(1);

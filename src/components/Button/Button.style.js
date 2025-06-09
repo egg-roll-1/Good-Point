@@ -38,4 +38,13 @@ export const buttonStyles = {
     border: 'none',
     color: '#ffffff',
   },
+  check: {
+    ...baseButtonStyle,
+    width: '90px',
+    height: '30px',
+    backgroundColor: '#3b82f6',
+    border: 'none',
+    color: '#ffffff',
+    top: '10px'
+  }
 };

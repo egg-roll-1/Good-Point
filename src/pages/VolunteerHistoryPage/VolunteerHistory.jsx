@@ -1,12 +1,15 @@
 import SearchBar from '../../components/SearchBar/SearchBar';
 import VolRequested from '../../components/VolRequested/VolRequested'; 
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import PageNum from '../../components/PageNum/PageNum';
+import Button from "../../components/Button/Button"
 import styles from './VolunteerHistory.module.css';
 import { Layout } from '../../components/Layout/Layout';
 import { useVolunteerRequest, useVolunteerWorkCancel } from "../../features/volunteer-request/hooks/useVolunteerRequest"
 // 여기 페이지 수정해야됨
 const VolunteerHistory = () => {
+  const navigate = useNavigate();
 
   // 페이지네이션 상태 추가 -> 5개가 한페이지
   const [ currentPage, setCurrentPage ] = useState(1);
@@ -113,6 +116,10 @@ const VolunteerHistory = () => {
     );
   }
 
+  const onClickButton = () => {
+    navigate(`/volhislist`)
+  }
+
   // 데이터 가공 (VolRequested에 필요한 형태로 변환)
 const processedData = volunteerRequests
   ?.filter(request => request.status !== 'Canceled') // 취소된 항목 제외
@@ -148,9 +155,13 @@ const processedData = volunteerRequests
   return (
     <Layout>
       <div className={styles.volunteerhistory}>
-        <h2 className={styles.vhtitle}>신청 내역</h2>
+        <div className={styles.pagehead}>
+          <h2 className={styles.vhtitle}>신청 내역</h2>
+          <Button type={'check'} text={'활동 내역'} onClick={onClickButton}/>
+        </div>
         
-        <SearchBar placeholder="무엇이든 찾아보세요" />
+        
+        {/* <SearchBar placeholder="무엇이든 찾아보세요" /> */}
         
        <div className={styles.bottomsheetcontent}>
             {currentPageData.length > 0 ? (

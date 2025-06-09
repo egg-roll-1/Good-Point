@@ -21,6 +21,7 @@ const VolunteerMap = () => {
   });
   const [locationError, setLocationError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isMapReady, setIsMapReady] = useState(false); // 지도 준비 상태 추가
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
   const [searchKeyword, setSearchKeyword] = useState('');
 
@@ -63,6 +64,7 @@ const VolunteerMap = () => {
   const displayVolunteerMarkers = (volunteerData = data) => {
     console.log('🔍 displayVolunteerMarkers 호출됨');
     console.log('🗺️ mapInstance.current:', !!mapInstance.current);
+    console.log('🚀 isMapReady:', isMapReady);
     console.log('📊 받은 volunteerData:', volunteerData);
     
     // 데이터 구조 확인 및 배열 추출
@@ -81,8 +83,8 @@ const VolunteerMap = () => {
     console.log('📋 dataArray isArray:', Array.isArray(dataArray));
     console.log('📏 dataArray length:', dataArray?.length);
     
-    if (!mapInstance.current) {
-      console.log('❌ 지도 인스턴스가 없음');
+    if (!mapInstance.current || !isMapReady) {
+      console.log('❌ 지도가 아직 준비되지 않음 - 대기 중');
       return;
     }
     
@@ -296,6 +298,10 @@ const VolunteerMap = () => {
       window.kakao.maps.event.addListener(mapInstance.current, 'click', () => {
         closeCurrentInfoWindow();
       });
+
+      // 🔥 지도 준비 완료 상태 설정
+      console.log('🎉 지도 초기화 완료 - isMapReady를 true로 설정');
+      setIsMapReady(true);
     };
 
     // 카카오맵 SDK 로드 함수 호출
@@ -307,6 +313,7 @@ const VolunteerMap = () => {
       if (currentLocationMarkerRef.current) {
         currentLocationMarkerRef.current.setMap(null);
       }
+      setIsMapReady(false); // 정리 시 false로 설정
     };
   }, [currentPosition, isLoading]);
 
@@ -314,10 +321,11 @@ const VolunteerMap = () => {
   useEffect(() => {
     console.log('🔄 useEffect 데이터 변경 감지:', data);
     console.log('🗺️ mapInstance.current 존재:', !!mapInstance.current);
+    console.log('🚀 isMapReady:', isMapReady);
     console.log('📊 data 존재:', !!data);
     
-    if (!mapInstance.current) {
-      console.log('⚠️ 지도 인스턴스가 아직 준비되지 않음 - 대기 중');
+    if (!mapInstance.current || !isMapReady) {
+      console.log('⚠️ 지도가 아직 준비되지 않음 - 대기 중');
       return;
     }
     
@@ -342,7 +350,7 @@ const VolunteerMap = () => {
         console.log('🔍 volunteerList 내용:', volunteerList);
       }
     }
-  }, [data]);
+  }, [data, isMapReady]); // 의존성 배열에 isMapReady 추가
 
   // 검색 기능
   const handleSearch = (e) => {

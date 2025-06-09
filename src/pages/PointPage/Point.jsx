@@ -3,11 +3,16 @@ import PointGauge from '../../components/PointGauge/PointGauge.jsx';
 import shibaImage from '../../assets/Shiba Inu Dog Lying Down.png';
 import styles from './Point.module.css';
 import { Layout } from '../../components/Layout/Layout.jsx';
-import { useAuthGuard } from '../../features/auth/hooks/useAuth.js';
 import { useVolunteerHistory } from '../../features/volunteer-history/hooks/useVolunteerHistory';
+import { getUserProfile } from '../../features/user/api/api'; 
+import { useNavigate } from 'react-router-dom';
 
 const Point = () => {
-  useAuthGuard();
+  const navigate = useNavigate();
+  
+  // 사용자 인증 상태 확인을 위한 상태
+  const [userInfo, setUserInfo] = useState(null);
+  const [authLoading, setAuthLoading] = useState(true);
 
   // 봉사 활동 내역 조회
   const { data: volunteerHistory, isLoading, error, refetch } = useVolunteerHistory();
@@ -22,18 +27,36 @@ const Point = () => {
   const maxPoint = 10000;
   const percent = Math.min((totalPoints / maxPoint) * 100, 100);
 
+  // 사용자 인증 상태 확인
+  useEffect(() => {
+    getUserProfile()
+      .then((data) => {
+        setUserInfo(data);
+        setAuthLoading(false);
+      })
+      .catch((err) => {
+        console.error('유저 정보 불러오기 실패:', err);
+        setAuthLoading(false);
+      });
+  }, []);
+
+  // 로그인되지 않은 경우 로그인 페이지로 리다이렉트
+  if (!authLoading && !userInfo) {
+    navigate('/login');
+    return null; // 리다이렉트 중에는 아무것도 렌더링하지 않음
+  }
+
   // 봉사활동 내역에서 총 봉사시간 계산
   const calculateTotalHours = () => {
     if (!volunteerHistory || volunteerHistory.length === 0) {
       return 0;
     }
 
-    // 모든 완료된 봉사활동의 minute를 합산하여 시간으로 변환
     const totalMinutes = volunteerHistory.reduce((total, history) => {
       return total + (history.minute || 0);
     }, 0);
 
-    return totalMinutes / 60; // 분을 시간으로 변환
+    return totalMinutes / 60;
   };
 
   // 봉사활동 데이터가 로드되면 자동으로 시간 계산
@@ -48,13 +71,9 @@ const Point = () => {
   const refreshPoints = async () => {
     setIsRefreshing(true);
     try {
-      // 봉사활동 내역 데이터 새로고침
       await refetch();
-
-      // 계산된 시간으로 포인트 업데이트
       const calculatedHours = calculateTotalHours();
       setVolunteerHours(calculatedHours);
-
       console.log('봉사 내역을 조회하여 포인트를 업데이트했습니다.');
     } catch (error) {
       console.error('포인트 새로고침 중 오류 발생:', error);
@@ -63,8 +82,8 @@ const Point = () => {
     }
   };
 
-  // 로딩 상태 처리
-  if (isLoading) {
+  // 인증 로딩 중이거나 데이터 로딩 중
+  if (authLoading || isLoading) {
     return (
       <Layout>
         <div className={styles.pointpage}>
