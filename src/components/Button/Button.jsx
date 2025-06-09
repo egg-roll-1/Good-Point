@@ -12,6 +12,8 @@ const Button = ({ text, type, onClick, disabled }) => {
         return buttonStyles.action;
       case 'brightLogin':
         return buttonStyles.brightLogin;
+      case 'check' :
+        return buttonStyles.check;
       default:
         return buttonStyles.login; // 기본값
     }

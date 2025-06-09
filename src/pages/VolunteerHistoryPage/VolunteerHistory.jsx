@@ -1,15 +1,11 @@
 import { useState } from 'react';
-import { Layout } from '../../components/Layout/Layout';
+import { useNavigate } from 'react-router-dom';
 import PageNum from '../../components/PageNum/PageNum';
-import SearchBar from '../../components/SearchBar/SearchBar';
-import VolRequested from '../../components/VolRequested/VolRequested';
-import {
-  useVolunteerRequest,
-  useVolunteerWorkCancel,
-} from '../../features/volunteer-request/hooks/useVolunteerRequest';
+import Button from "../../components/Button/Button"
 import styles from './VolunteerHistory.module.css';
 // 여기 페이지 수정해야됨
 const VolunteerHistory = () => {
+  const navigate = useNavigate();
   // 페이지네이션 상태 추가 -> 5개가 한페이지
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 5; // 페이지당 5개
@@ -113,6 +109,10 @@ const VolunteerHistory = () => {
     );
   }
 
+  const onClickButton = () => {
+    navigate(`/volhislist`)
+  }
+
   // 데이터 가공 (VolRequested에 필요한 형태로 변환)
   const processedData =
     volunteerRequests
@@ -147,15 +147,35 @@ const VolunteerHistory = () => {
   return (
     <Layout>
       <div className={styles.volunteerhistory}>
-        <h2 className={styles.vhtitle}>신청 내역</h2>
+        <div className={styles.pagehead}>
+          <h2 className={styles.vhtitle}>신청 내역</h2>
+          <Button type={'check'} text={'활동 내역'} onClick={onClickButton}/>
+        </div>
+        
+        
+        {/* <SearchBar placeholder="무엇이든 찾아보세요" /> */}
+        
+       <div className={styles.bottomsheetcontent}>
+            {currentPageData.length > 0 ? (
+              <VolRequested
+                data={currentPageData}
+                showCancelButton={true}
+              />
+            ) : (
+              <div className={styles.emptyState}>
+                신청한 봉사활동이 없습니다.
+              </div>
+            )}
+          </div>
 
-        <SearchBar placeholder="무엇이든 찾아보세요" />
-
-        <div className={styles.bottomsheetcontent}>
-          {currentPageData.length > 0 ? (
-            <VolRequested data={currentPageData} showCancelButton={true} />
-          ) : (
-            <div className={styles.emptyState}>신청한 봉사활동이 없습니다.</div>
+          {/* 페이지네이션 */}
+          {totalItems > 0 && (
+            <PageNum 
+              currentPage={currentPage}
+              totalItems={totalItems}
+              pageSize={pageSize}
+              onPageChange={handlePageChange}
+            />
           )}
         </div>
 

@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 const MyInfo = () => {
 
-  useAuthGuard(true);
+  // useAuthGuard(true);
   const [userInfo, setUserInfo] = useState(null);
   const [loading, setLoading] = useState(true);
   const [showPwModal, setShowPwModal] = useState(false);
@@ -34,14 +34,11 @@ const MyInfo = () => {
       </Layout>
     );
 
-  if (!userInfo)
-    return (
-      <Layout>
-        <div className={styles.myinfopage}>
-          <div className={styles.error}>정보를 불러오지 못했습니다.</div>
-        </div>
-      </Layout>
-    );
+  if (!userInfo){
+    navigate(`/login`);
+  }
+        
+    
 
   return (
     <Layout>

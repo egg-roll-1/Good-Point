@@ -72,6 +72,10 @@ const router = createBrowserRouter([
         path: routes.infopage,
         element: <InfoPage />,
       },
+      {
+        path: routes.volhislist,
+        element: <VolHistoryListPage/>
+      }
     ],
   },
 ]);

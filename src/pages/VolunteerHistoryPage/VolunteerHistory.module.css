@@ -18,5 +18,10 @@
   max-height: calc(85vh - 100px); /* 스크롤 영역 최대 높이 (총 높이 - 검색바/헤더 높이) */
 }
 
+.pagehead {
+  display: flex;
+  gap: 170px;
+}
+
   
   

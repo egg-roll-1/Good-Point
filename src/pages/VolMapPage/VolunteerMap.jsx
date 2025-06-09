@@ -21,6 +21,7 @@ const VolunteerMap = () => {
   });
   const [locationError, setLocationError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isMapReady, setIsMapReady] = useState(false); // 지도 준비 상태 추가
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
   const [searchKeyword, setSearchKeyword] = useState('');
 
@@ -63,6 +64,7 @@ const VolunteerMap = () => {
   const displayVolunteerMarkers = (volunteerData = data) => {
     console.log('🔍 displayVolunteerMarkers 호출됨');
     console.log('🗺️ mapInstance.current:', !!mapInstance.current);
+    console.log('🚀 isMapReady:', isMapReady);
     console.log('📊 받은 volunteerData:', volunteerData);
 
     // 데이터 구조 확인 및 배열 추출
@@ -80,9 +82,10 @@ const VolunteerMap = () => {
 
     console.log('📋 dataArray isArray:', Array.isArray(dataArray));
     console.log('📏 dataArray length:', dataArray?.length);
+    
+    if (!mapInstance.current || !isMapReady) {
+      console.log('❌ 지도가 아직 준비되지 않음 - 대기 중');
 
-    if (!mapInstance.current) {
-      console.log('❌ 지도 인스턴스가 없음');
       return;
     }
 
@@ -305,6 +308,9 @@ const VolunteerMap = () => {
       window.kakao.maps.event.addListener(mapInstance.current, 'click', () => {
         closeCurrentInfoWindow();
       });
+
+      // 🔥 지도 준비 완료 상태 설정
+      setIsMapReady(true);
     };
 
     // 카카오맵 SDK 로드 함수 호출
@@ -316,42 +322,31 @@ const VolunteerMap = () => {
       if (currentLocationMarkerRef.current) {
         currentLocationMarkerRef.current.setMap(null);
       }
+      setIsMapReady(false); // 정리 시 false로 설정
     };
   }, [currentPosition, isLoading]);
 
   // 봉사활동 데이터가 변경될 때마다 마커 업데이트
   useEffect(() => {
-    console.log('🔄 useEffect 데이터 변경 감지:', data);
-    console.log('🗺️ mapInstance.current 존재:', !!mapInstance.current);
-    console.log('📊 data 존재:', !!data);
-
-    if (!mapInstance.current) {
-      console.log('⚠️ 지도 인스턴스가 아직 준비되지 않음 - 대기 중');
+    
+    if (!mapInstance.current || !isMapReady) {
       return;
     }
 
     if (!data) {
-      console.log('⚠️ 데이터가 아직 없음 - 대기 중');
       return;
     }
 
     // 데이터 구조 확인 후 적절한 배열 추출
     const volunteerList = data.content || data.result || data;
-    console.log('📋 실제 사용할 봉사활동 목록:', volunteerList);
-    console.log('📏 목록 길이:', volunteerList?.length);
-    console.log('✅ 배열 여부:', Array.isArray(volunteerList));
 
     if (Array.isArray(volunteerList) && volunteerList.length > 0) {
-      console.log('🚀 displayVolunteerMarkers 호출 예정');
       displayVolunteerMarkers(volunteerList);
     } else {
-      console.log('❌ 봉사활동 목록이 배열이 아니거나 비어있음');
       if (!Array.isArray(volunteerList)) {
-        console.log('🔍 volunteerList 타입:', typeof volunteerList);
-        console.log('🔍 volunteerList 내용:', volunteerList);
       }
     }
-  }, [data]);
+  }, [data, isMapReady]); // 의존성 배열에 isMapReady 추가
 
   // 검색 기능
   const handleSearch = (e) => {
