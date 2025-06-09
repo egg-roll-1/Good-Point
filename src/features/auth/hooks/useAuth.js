@@ -2,6 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import { useLocation, useNavigate } from 'react-router-dom';
 import routes from '../../../constants/routes';
 import { signIn, signUp, signOut } from '../api/api'; // signOut 추가
+import { errorHandler } from '../../common/errorHandler';
 /** import { LoginResponse } from '../api/model'; **/
 
 export const rememberKey = 'GP:REMEMBER';
@@ -16,10 +17,10 @@ export const accessTokenExpireKey = 'GP:ACCESS:EXPIRE';
 const afterLoginAction = (response) => {
   localStorage.setItem(accessTokenKey, response.accessToken);
   localStorage.setItem(accessTokenExpireKey, response.accessTokenExpireKey);
-  
+
   const to = localStorage.getItem(rememberKey) ?? '/';
   localStorage.removeItem(rememberKey); // 중복 제거 수정
-  
+
   return to;
 };
 
@@ -37,9 +38,10 @@ const afterLogoutAction = () => {
  */
 export const useSignUp = () => {
   const navigate = useNavigate();
-  
+
   return useMutation({
     mutationFn: signUp,
+    onError: errorHandler,
     onSuccess: (response) => {
       const to = afterLoginAction(response);
       navigate(to, { replace: true });
@@ -52,9 +54,10 @@ export const useSignUp = () => {
  */
 export const useLogin = () => {
   const navigate = useNavigate();
-  
+
   return useMutation({
     mutationFn: signIn,
+    onError: errorHandler,
     onSuccess: (response) => {
       const to = afterLoginAction(response);
       navigate(to, { replace: true });
@@ -67,7 +70,7 @@ export const useLogin = () => {
  */
 export const useLogout = () => {
   const navigate = useNavigate();
-  
+
   return useMutation({
     mutationFn: signOut, // LogOut -> signOut으로 수정
     onSuccess: () => {
@@ -80,26 +83,26 @@ export const useLogout = () => {
 export const useAuthGuard = (redirect = true) => {
   const navigate = useNavigate();
   const location = useLocation();
-  
+
   const accessToken = localStorage.getItem(accessTokenKey);
   const expiredAt = localStorage.getItem(accessTokenExpireKey);
-  
+
   const doRedirect = () => {
     // 현재 위치를 기억합니다.
     localStorage.setItem(rememberKey, location.pathname);
-    
+
     // 로그인으로 이동시킵니다.
     navigate(routes.login);
   };
-  
+
   // 세션이 없는 경우, 로그인 화면으로 이동시킵니다.
   if (!accessToken || !expiredAt || new Date(expiredAt) <= new Date()) {
     if (redirect) {
       doRedirect();
     }
-    
+
     return false;
   }
-  
+
   return true;
 };

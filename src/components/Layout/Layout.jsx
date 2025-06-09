@@ -7,11 +7,12 @@ import routes from '../../constants/routes';
 import { Text } from '../Text/Text';
 import { HStack } from '../Stack/HStack';
 import { useAuthGuard, useLogout } from '../../features/auth/hooks/useAuth'; // useLogout 추가
+import { ToastContainer } from 'react-toastify';
 
 export const Layout = ({ children }) => {
   const isAuthorized = useAuthGuard(false);
   const logoutMutation = useLogout(); // useLogout 훅 사용
-  
+
   // 로그아웃 핸들러
   const handleLogout = () => {
     logoutMutation.mutate();
@@ -30,7 +31,7 @@ export const Layout = ({ children }) => {
                 border: 'none',
                 cursor: 'pointer',
                 fontWeight: '700',
-                opacity: logoutMutation.isPending ? 0.6 : 1 // 로딩 시 투명도 조절
+                opacity: logoutMutation.isPending ? 0.6 : 1, // 로딩 시 투명도 조절
               }}
             >
               <Text fontSize="sm" color="var(--goodpoint-fg)">
@@ -48,9 +49,10 @@ export const Layout = ({ children }) => {
           </Link>
         )}
       </Header>
-      
+
       {children}
       <BottomNavigation />
+      <ToastContainer />
     </div>
   );
 };

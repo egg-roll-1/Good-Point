@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { getVolunteerHistory } from '../api/api';
+import { errorHandler } from '../../common/errorHandler';
 
 export const volunteerHistoryKeys = {
   all: ['volunteer-history'],
@@ -12,6 +13,7 @@ export const volunteerHistoryKeys = {
  */
 export const useVolunteerHistory = () => {
   return useQuery({
+    onError: errorHandler,
     queryKey: volunteerHistoryKeys.list(),
     queryFn: getVolunteerHistory,
     staleTime: 5 * 60 * 1000, // 5분 캐시
