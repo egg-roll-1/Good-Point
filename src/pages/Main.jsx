@@ -5,6 +5,7 @@ import { Layout } from '../components/Layout/Layout.jsx';
 import MenuGrid from '../components/MenuGrid/MenuGrid.jsx';
 import SearchBar from '../components/SearchBar/SearchBar.jsx';
 import VolunteerCard from '../components/VolunteerCard/VolunteerCard.jsx';
+import { SpacingY } from '../components/Spacing/Spacing.js';
 
 const Main = () => {
   const { data, isLoading, error } = useVolunteerWork();
@@ -73,6 +74,7 @@ const Main = () => {
               </div>
             );
           })}
+          <SpacingY size="xl" />
         </div>
       </div>
     </Layout>

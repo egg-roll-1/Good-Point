@@ -1,5 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { requestVolunteerWork, cancelVolunteerRequest, getVolunteerRequestList } from '../api/api';
+import { errorHandler } from '../../common/errorHandler';
 
 export const volunteerRequestKeys = {
   all: ['volunteer-request'],
@@ -11,6 +12,7 @@ export const volunteerRequestKeys = {
  */
 export const useVolunteerRequest = () => {
   return useQuery({
+    onError: errorHandler,
     queryKey: volunteerRequestKeys.list(),
     queryFn: () => getVolunteerRequestList(),
   });
@@ -24,12 +26,10 @@ export const useVolunteerWorkCancel = () => {
 
   return useMutation({
     mutationFn: cancelVolunteerRequest,
+    onError: errorHandler,
     onSuccess: async () => {
       queryClient.invalidateQueries(volunteerRequestKeys.list());
     },
-    onError: (error) => {
-      console.error('봉사활동 취소 실패:', error);
-    }
   });
 };
 
@@ -38,11 +38,12 @@ export const useVolunteerWorkCancel = () => {
  */
 export const useVolunteerWorkRequest = () => {
   const queryClient = useQueryClient();
-     
+
   return useMutation({
-    mutationFn: requestVolunteerWork, 
+    mutationFn: requestVolunteerWork,
+    onError: errorHandler,
     onSuccess: async () => {
       queryClient.invalidateQueries({ queryKey: volunteerRequestKeys.list() });
-    }
+    },
   });
 };

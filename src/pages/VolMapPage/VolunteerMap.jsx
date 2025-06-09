@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSwipeable } from 'react-swipeable';
 import VolList from '../../components/VolList/VolList';
 import styles from './VolunteerMap.module.css';
@@ -37,7 +37,7 @@ const VolunteerMap = () => {
     onSwipedUp: () => setBottomSheetVisible(true),
     onSwipedDown: () => setBottomSheetVisible(false),
     preventDefaultTouchmoveEvent: true, // 스와이프 중 기본 스크롤 방지
-    trackMouse: false, // 모바일에서만 작동하도록 설정 (선택적)
+    trackMouse: true, // 모바일에서만 작동하도록 설정 (선택적)
     delta: 10, // 스와이프로 인식할 최소 거리 (픽셀)
   });
 
@@ -53,7 +53,7 @@ const VolunteerMap = () => {
   // 기존 마커들을 지우는 함수
   const clearMarkers = () => {
     closeCurrentInfoWindow(); // 정보창도 함께 닫기
-    markersRef.current.forEach(marker => {
+    markersRef.current.forEach((marker) => {
       marker.setMap(null);
     });
     markersRef.current = [];
@@ -64,7 +64,7 @@ const VolunteerMap = () => {
     console.log('🔍 displayVolunteerMarkers 호출됨');
     console.log('🗺️ mapInstance.current:', !!mapInstance.current);
     console.log('📊 받은 volunteerData:', volunteerData);
-    
+
     // 데이터 구조 확인 및 배열 추출
     let dataArray = volunteerData;
     if (volunteerData && volunteerData.content) {
@@ -77,20 +77,20 @@ const VolunteerMap = () => {
       dataArray = volunteerData;
       console.log('✅ 직접 배열 사용:', dataArray);
     }
-    
+
     console.log('📋 dataArray isArray:', Array.isArray(dataArray));
     console.log('📏 dataArray length:', dataArray?.length);
-    
+
     if (!mapInstance.current) {
       console.log('❌ 지도 인스턴스가 없음');
       return;
     }
-    
+
     if (!dataArray || !Array.isArray(dataArray)) {
       console.log('❌ 데이터 배열이 없거나 유효하지 않음');
       return;
     }
-    
+
     if (dataArray.length === 0) {
       console.log('⚠️ 데이터 배열이 비어있음');
       return;
@@ -104,45 +104,45 @@ const VolunteerMap = () => {
     let successCount = 0;
     dataArray.forEach((volunteer, index) => {
       console.log(`\n🔸 ${index}번째 봉사활동 처리 중:`, volunteer);
-      
+
       // 위도/경도 필드명 확인 (다양한 필드명 지원)
       const lat = parseFloat(volunteer.latitude || volunteer.lat || volunteer.y);
       const lng = parseFloat(volunteer.longitude || volunteer.lng || volunteer.lon || volunteer.x);
-      
+
       console.log(`📍 ${index}번째 위치 - lat: ${lat}, lng: ${lng}`);
-      console.log(`✔️ 유효성 검사 - lat valid: ${!isNaN(lat) && lat !== 0}, lng valid: ${!isNaN(lng) && lng !== 0}`);
+      console.log(
+        `✔️ 유효성 검사 - lat valid: ${!isNaN(lat) && lat !== 0}, lng valid: ${!isNaN(lng) && lng !== 0}`,
+      );
 
       if (lat && lng && !isNaN(lat) && !isNaN(lng) && lat !== 0 && lng !== 0) {
         try {
           console.log(`🚀 ${index}번째 마커 생성 시작`);
-          
+
           const markerPosition = new window.kakao.maps.LatLng(lat, lng);
           console.log('📌 마커 위치 객체 생성:', markerPosition);
-          
+
           // 봉사활동 마커 생성 (기본 빨간 마커)
           const marker = new window.kakao.maps.Marker({
             position: markerPosition,
             title: volunteer.title || `봉사활동 ${index + 1}`,
-            clickable: true // 클릭 가능하도록 명시적 설정
+            clickable: true, // 클릭 가능하도록 명시적 설정
           });
 
           console.log('🎯 마커 객체 생성 완료:', marker);
-          
+
           // 지도에 마커 추가
           marker.setMap(mapInstance.current);
           markersRef.current.push(marker);
           successCount++;
-          
+
           console.log(`✅ ${index}번째 마커 생성 및 지도 추가 완료 (총 ${successCount}개)`);
 
           // 마커 클릭 이벤트 - 봉사활동 상세 정보 표시 (토글 기능)
           window.kakao.maps.event.addListener(marker, 'click', () => {
             console.log('🖱️ 마커 클릭됨:', volunteer.title);
-            
             // 같은 마커를 다시 클릭한 경우 정보창 닫기
             if (currentMarkerRef.current === marker && currentInfoWindowRef.current) {
               console.log('🔄 같은 마커 재클릭 - 정보창 닫기');
-              closeCurrentInfoWindow();
               return;
             }
 
@@ -168,15 +168,14 @@ const VolunteerMap = () => {
                 </div>
               `,
             });
-            
+
             infowindow.open(mapInstance.current, marker);
             console.log('📋 정보창 열림');
-            
+
             // 현재 열린 정보창과 마커 추적
             currentInfoWindowRef.current = infowindow;
             currentMarkerRef.current = marker;
           });
-          
         } catch (error) {
           console.error(`❌ ${index}번째 마커 생성 중 오류:`, error);
         }
@@ -184,10 +183,10 @@ const VolunteerMap = () => {
         console.log(`⚠️ ${index}번째 데이터의 위치 정보가 유효하지 않음 - lat:${lat}, lng:${lng}`);
       }
     });
-    
+
     console.log(`\n🎉 마커 생성 완료! 총 ${successCount}/${dataArray.length}개의 마커가 생성됨`);
     console.log('📍 생성된 마커 수:', markersRef.current.length);
-    
+
     // 마커가 하나도 생성되지 않은 경우 추가 정보 출력
     if (successCount === 0) {
       console.log('❌ 마커가 하나도 생성되지 않았습니다!');
@@ -200,7 +199,7 @@ const VolunteerMap = () => {
   useEffect(() => {
     // HTTPS 환경 체크
     const isSecureContext = location.protocol === 'https:' || location.hostname === 'localhost';
-    
+
     if (!navigator.geolocation) {
       setLocationError(console.log('이 브라우저에서는 위치 서비스를 지원하지 않습니다.'));
       setIsLoading(false);
@@ -209,12 +208,18 @@ const VolunteerMap = () => {
 
     // HTTP 환경에서는 위치 요청하지 않고 기본값 사용
     if (!isSecureContext) {
-      console.warn(console.log('HTTPS 환경이 아니므로 기본 위치(숭실대학교 정보과학관)를 사용합니다.'));
+      console.warn(
+        console.log('HTTPS 환경이 아니므로 기본 위치(숭실대학교 정보과학관)를 사용합니다.'),
+      );
       setCurrentPosition({
         lat: 37.4967, // 숭실대학교 정보과학관 좌표
         lng: 126.9571,
       });
-      setLocationError(console.log('보안상 HTTPS 환경에서만 현재 위치를 사용할 수 있습니다. 기본 위치(숭실대학교 정보과학관)로 설정되었습니다.'));
+      setLocationError(
+        console.log(
+          '보안상 HTTPS 환경에서만 현재 위치를 사용할 수 있습니다. 기본 위치(숭실대학교 정보과학관)로 설정되었습니다.',
+        ),
+      );
       setIsLoading(false);
       return;
     }
@@ -235,13 +240,17 @@ const VolunteerMap = () => {
           lat: 37.4967, // 숭실대학교 정보과학관 좌표
           lng: 126.9571,
         });
-        setLocationError(console.log(`위치 정보를 가져올 수 없습니다: ${error.message}. 기본 위치(숭실대학교 정보과학관)로 설정되었습니다.`));
+        setLocationError(
+          console.log(
+            `위치 정보를 가져올 수 없습니다: ${error.message}. 기본 위치(숭실대학교 정보과학관)로 설정되었습니다.`,
+          ),
+        );
         setIsLoading(false);
       },
-      { 
+      {
         enableHighAccuracy: true,
         timeout: 10000, // 10초 타임아웃 추가
-        maximumAge: 600000 // 10분간 캐시 사용
+        maximumAge: 600000, // 10분간 캐시 사용
       },
     );
   }, []);
@@ -284,7 +293,7 @@ const VolunteerMap = () => {
 
       // 현재 위치에 마커 표시 (기본 마커)
       const markerPosition = new window.kakao.maps.LatLng(currentPosition.lat, currentPosition.lng);
-      
+
       currentLocationMarkerRef.current = new window.kakao.maps.Marker({
         position: markerPosition,
         title: '현재 위치',
@@ -315,23 +324,23 @@ const VolunteerMap = () => {
     console.log('🔄 useEffect 데이터 변경 감지:', data);
     console.log('🗺️ mapInstance.current 존재:', !!mapInstance.current);
     console.log('📊 data 존재:', !!data);
-    
+
     if (!mapInstance.current) {
       console.log('⚠️ 지도 인스턴스가 아직 준비되지 않음 - 대기 중');
       return;
     }
-    
+
     if (!data) {
       console.log('⚠️ 데이터가 아직 없음 - 대기 중');
       return;
     }
-    
+
     // 데이터 구조 확인 후 적절한 배열 추출
     const volunteerList = data.content || data.result || data;
     console.log('📋 실제 사용할 봉사활동 목록:', volunteerList);
     console.log('📏 목록 길이:', volunteerList?.length);
     console.log('✅ 배열 여부:', Array.isArray(volunteerList));
-    
+
     if (Array.isArray(volunteerList) && volunteerList.length > 0) {
       console.log('🚀 displayVolunteerMarkers 호출 예정');
       displayVolunteerMarkers(volunteerList);
@@ -370,12 +379,12 @@ const VolunteerMap = () => {
 
         // 검색된 장소들이 모두 보이도록 지도 범위 설정
         mapInstance.current.setBounds(bounds);
-        
+
         // 검색된 첫 번째 장소의 위치로 currentPosition 업데이트
         if (data && data.length > 0) {
           setCurrentPosition({
             lat: parseFloat(data[0].y),
-            lng: parseFloat(data[0].x)
+            lng: parseFloat(data[0].x),
           });
         }
       } else if (status === window.kakao.maps.services.Status.ZERO_RESULT) {
@@ -425,8 +434,8 @@ const VolunteerMap = () => {
             {bottomSheetVisible && (
               <div className={styles.bottomsheetcontent}>
                 <div className={styles.volunteertitletext}>지역 봉사</div>
-                <VolList 
-                  passedData={data} 
+                <VolList
+                  passedData={data}
                   passedIsLoading={isDataLoading}
                   latitude={currentPosition.lat}
                   longitude={currentPosition.lng}

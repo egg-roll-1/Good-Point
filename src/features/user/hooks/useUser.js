@@ -1,5 +1,6 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { changePassword, getUserProfile } from '../api/api';
+import { errorHandler } from '../../common/errorHandler';
 
 export const userKeys = {
   all: ['user'],
@@ -15,6 +16,7 @@ export const useUserProfile = () => {
 
 export const useChangePassword = () => {
   return useMutation({
+    onError: errorHandler,
     mutationFn: ({ oldPassword, newPassword }) => changePassword(oldPassword, newPassword),
   });
 };
